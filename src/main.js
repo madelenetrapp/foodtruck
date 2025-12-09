@@ -31,34 +31,35 @@ async function sendRequest(url) {
 let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
 
 //gör ett div element, sparar i variabeln container
-const container = document.createElement('div');
+
 // const itemContainer = document.createElement('div');
 //funktionen addMenuInformation tar argumentet item
-function addMenuInformation(item) {
+function addMenuInformation(item) { 
+
 
   //skapar ett p-element och lagrar den i varibeln wonton
-  const wonton = document.createElement('p');
-  const price = document.createElement('p');
-  const ingredients = document.createElement('p');
+  const wonton = document.createElement('div');
+  const price = document.createElement('div');
+  // const ingredients = document.createElement('div');
   // console.log('')
 
 
   //lägger till en css klass menuItem på elementet
   wonton.classList.add('menuItem');
   price.classList.add('menuprice');
-  ingredients.classList.add('ingredients');
+  // ingredients.classList.add('ingredients');
 
   //hämtar första elementet i DOM:en som har klassen .food-option och lagrar det i foodOption
-  const foodOptions = document.querySelector('.food-options');
+ 
 
   wonton.innerText = item.name;
   price.innerText = item.price;
   // ingredients.innerText = item.ingredients.join(',');
-
+ const foodOptions = document.querySelector('.food-options');
   //lägger till den skapade wonton-diven som ett barn till elementet .food-options
   foodOptions.appendChild(wonton);
   foodOptions.appendChild(price);
-  foodOptions.appendChild(ingredients);
+  // foodOptions.appendChild(ingredients);
   //sätter textinnehållet i wonton-diven till värdet av item.name
 
 
