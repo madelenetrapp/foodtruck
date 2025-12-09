@@ -2,6 +2,29 @@
 const apiKey = "yum-BHRyCR5Lgznl28Tr";
 
 
+async function sendTenantRequest(url, apiKey) {
+  try {
+    const response = await fetch(url, {
+      method: "POST", headers: { 'x-zocom': apiKey }, body: {
+        "name": "Madelene Trapp"
+      }
+    })
+    if (response.status !== 200) {
+      console.log('request wasen´t successful. Code:' + response.status)
+      return null
+    }
+    const data = await response.json()
+    return data // success
+  }
+  catch {
+    if (!responce) {
+    }
+    else if (!data) {
+    }
+    return null
+  }
+}
+
 //deklarerar en funktion som tar parameter url
 async function sendRequest(url) {
   try {
@@ -40,26 +63,26 @@ function addMenuInformation(item) {
   //skapar ett p-element och lagrar den i varibeln wonton
   const wonton = document.createElement('div');
   const price = document.createElement('div');
-  // const ingredients = document.createElement('div');
+  const ingredients = document.createElement('div');
   // console.log('')
 
 
   //lägger till en css klass menuItem på elementet
   wonton.classList.add('menuItem');
   price.classList.add('menuprice');
-  // ingredients.classList.add('ingredients');
+  ingredients.classList.add('ingredients');
 
   //hämtar första elementet i DOM:en som har klassen .food-option och lagrar det i foodOption
  
 
   wonton.innerText = item.name;
   price.innerText = item.price;
-  // ingredients.innerText = item.ingredients.join(',');
+  ingredients.innerText = item.ingredients.join(',');
  const foodOptions = document.querySelector('.food-options');
   //lägger till den skapade wonton-diven som ett barn till elementet .food-options
   foodOptions.appendChild(wonton);
   foodOptions.appendChild(price);
-  // foodOptions.appendChild(ingredients);
+  foodOptions.appendChild(ingredients);
   //sätter textinnehållet i wonton-diven till värdet av item.name
 
 
@@ -93,30 +116,8 @@ result.items.forEach(entry => {
 
 
 
-// async function sendTenantRequest(url, apiKey) {
-//   try {
-//     const response = await fetch(url, {
-//       method: "POST", headers: { 'x-zocom': apiKey }, body: {
-//         "name": "zocom"
-//       }
-//     })
-//     if (response.status !== 200) {
-//       console.log('request wasen´t successful. Code:' + response.status)
-//       return null
-//     }
-//     const data = await response.json()
-//     return data // success
-//   }
-//   catch {
-//     if (!responce) {
-//     }
-//     else if (!data) {
-//     }
-//     return null
-//   }
-// }
 
 // let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/keys');
 // result = result.key;
 
-// let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
+let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
