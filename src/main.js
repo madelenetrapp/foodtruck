@@ -1,7 +1,7 @@
-//skapar en constant variabel, nyckel till meny
+//håller API-nyckel
 const apiKey = "yum-BHRyCR5Lgznl28Tr";
 
-
+//tar ut en tenant
 async function sendTenantRequest(url, apiKey) {
   try {
     const response = await fetch(url, {
@@ -51,15 +51,18 @@ async function sendRequest(url) {
 }
 
 //hämtar info från back-end. Anropar sendRequest med URL, väntar på svaret, resultatet lagras i variabeln result
+
+//TODO: GÖR TILLEN FUNKTION -ALLT SOM INTE LIGGER I FUNKTIONER BEHÖVER LIGGA I EN STOR FUNKTION
+//DOM element för menyobjekt
 let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
 
 //gör ett div element, sparar i variabeln container
 
 // const itemContainer = document.createElement('div');
 //funktionen addMenuInformation tar argumentet item
-function addMenuInformation(item) { 
+function addMenuInformation(item) {
 
-
+  //TODO: ändra från p till div
   //skapar ett p-element och lagrar den i varibeln wonton
   const wonton = document.createElement('div');
   const price = document.createElement('div');
@@ -70,19 +73,21 @@ function addMenuInformation(item) {
   //lägger till en css klass menuItem på elementet
   wonton.classList.add('menuItem');
   price.classList.add('menuprice');
-  ingredients.classList.add('ingredients');
+  // ingredients.classList.add('ingredients');
 
   //hämtar första elementet i DOM:en som har klassen .food-option och lagrar det i foodOption
- 
+
 
   wonton.innerText = item.name;
   price.innerText = item.price;
-  ingredients.innerText = item.ingredients.join(',');
- const foodOptions = document.querySelector('.food-options');
+  // ingredients.innerText = item.ingredients.join(',');
+  const foodOptions = document.querySelector('.food-options');
+
+
   //lägger till den skapade wonton-diven som ett barn till elementet .food-options
   foodOptions.appendChild(wonton);
   foodOptions.appendChild(price);
-  foodOptions.appendChild(ingredients);
+  // foodOptions.appendChild(ingredients);
   //sätter textinnehållet i wonton-diven till värdet av item.name
 
 
@@ -94,8 +99,7 @@ result.items.forEach(entry => {
 })
 
 
-
-
+let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
 
 
 // const bodyToSend = {
@@ -119,5 +123,3 @@ result.items.forEach(entry => {
 
 // let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/keys');
 // result = result.key;
-
-let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
