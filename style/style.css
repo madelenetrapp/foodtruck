@@ -9,15 +9,15 @@
   padding: 0.8em;
   gap: 0.5em;
 }
-
-.shopping-cart {
+/* 
+/* .shopping-cart {
   display: flex;
   width: 5em;
   background-color: white;
   color: black;
-}
+} */ */
 
-.food-options {
+* > food-options {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +34,7 @@ div {
   margin: 1px;
 }
 
-.dip-options {
+.dipsauce {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-bottom: 0.5px solid rgb(177, 172, 172);

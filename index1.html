@@ -4,145 +4,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/style.css">
+  <script type="module" src="./src/menu.js"></script>
   <title>Yum yum give mi sum</title>
 </head>
 
 <body>
-    <!-- VY 1 BUTTON som flyttar dig till vy 2 -->  
+  <!-- VY 1 BUTTON som flyttar dig till vy 2 -->
   <div class="menuView">
     <header>
-      <button class="shopping-cart">kundvagn</button>
+      <button class="cart">kundvagn</button>
     </header>
 
     <!-- Vy 1 Meny -->
     <!-- .js 1.kunna lägga till items i varukorgen -->
     <h1>Meny</h1>
 
-    <div class="menu">
-      <div class="KARLSTAD">
-        <div class="dotted-row"></div>
-        <div class="9-SEK"></div>
-        <div class="ingredients"></div>
+    <div class="wonton-information">
+      <div class="wonton-item">
+        <div class="wonton-row"></div>
+        <div class="wonton-price"></div>
+        <div class="wonton-ingredients"></div>
       </div>
 
-      <div class="BANKOK">
+      <!-- <div class="BANKOK">
         <div class="dotted-row"></div>
-        <div class="9-SEK"></div>
+        <div class="wonton-price"></div>
         <div class="ingredients"></div>
       </div>
 
       <div class="HO SHI MINH">
         <div class="dotted-row"></div>
-        <div class="9-SEK"></div>
+        <div class="wonton-price"></div>
         <div class="ingredients"></div>
       </div>
 
       <div class="PARIS">
         <div class="dotted-row"></div>
-        <div class="9-SEK"></div>
+        <div class="wonton-price"></div>
         <div class="ingredients"></div>
       </div>
 
       <div class="OAXACA">
         <div class="dotted-row"></div>
-        <div class="9-SEK"></div>
+        <div class="wonton-price"></div>
         <div class="ingredients"></div>
       </div>
+    </div> -->
     </div>
+
     <div class="dipsauce">
-      <div class="dotted-row"></div>
-      <div class="9-SEK"></div>
-      <div class="sweet-chili"></div>
-      <div class="wonton-std"></div>
-      <div class="sweet-&-sour"></div>
-      <div class="hot-mango"></div>
-      <div class="chili-mayo"></div>
-      <div class="guacamole"></div>
+      <div>DIPPSÅS</div>
     </div>
 
     <div class="drinks">
       <div class="dotted-row"></div>
-      <div class="9-SEK"></div>
+      <div class="dip-price"></div> <!--kolla vilket namn som står i API informationen-->
       <div class="fanta-orange"></div>
       <div class="fanta-exotic"></div>
       <div class="coca-cola"></div>
       <div class="sprite"></div>
-      <div class="loka-Granatäpple"></div>
+      <div class="loka-granatäpple"></div>
       <div class="loka-citrus"></div>
     </div>
-  </div>
-  <!-- Vy 2 kundvagn -->
-  <div class="shoppingCartView">
-    <header>
-      <div class="shopping-cart">kundvagn</button>
-    </header>
 
-    <!-- .js 1.kunna lägga till items i varukorgen -->
-    <!-- .js 2. kunna ta bort items i varukorgen -->
-    <!-- .js 3. steckad linje med skugga mellan item och pris-->
-    <!-- .js 4. se priset -->
-    <!-- .JS 5. BUTTON take my money som flyttar dig till ETA (vy3)-->
-    <!-- 6. border-bottom mellan item? -->
-    <!-- 7. ska finnas en button som tar dig tillbaka till frontpagen -->
-    <div class="KARLSTAD"></div>
-    <div class="antal beställda items"></div>
-    <div class="HO SHI MINH"></div>
-    <div class="antal beställda items"></div>
-    <div class="SWEET-CHILI-DIP"></div>
-    <div class="GUACAMOLE"></div>
-    <div class="FANTS ORANGE"></div>
-    <div class="FANTA-EXOTIC"></div>
 
-    <div class="för betalning">
-      <div class="TOTAL för beställning ink 20% moms"></div>
-      <button class="">"TAKE MY MONEY"</button>
+
+
+
+
+
+
+    <!-- Vy 2 kundvagn -->
+    <div class="shoppingCartView">
+      <header>
+        <div class="shopping-cart">kundvagn</button>
+      </header>
+
+      <!-- .js 1.kunna lägga till items i varukorgen -->
+      <!-- .js 2. kunna ta bort items i varukorgen -->
+      <!-- .js 3. steckad linje med skugga mellan item och pris-->
+      <!-- .js 4. se priset -->
+      <!-- .JS 5. BUTTON take my money som flyttar dig till ETA (vy3)-->
+      <!-- 6. border-bottom mellan item? -->
+      <!-- 7. ska finnas en button som tar dig tillbaka till frontpagen -->
+      <div class="KARLSTAD"></div>
+      <div class="antal beställda items"></div>
+      <div class="HO SHI MINH"></div>
+      <div class="antal beställda items"></div>
+      <div class="SWEET-CHILI-DIP"></div>
+      <div class="GUACAMOLE"></div>
+      <div class="FANTS ORANGE"></div>
+      <div class="FANTA-EXOTIC"></div>
+
+      <div class="för betalning">
+        <div class="TOTAL för beställning ink 20% moms"></div>
+        <button class="">"TAKE MY MONEY"</button>
+      </div>
+      <button class="MENY"></button>
     </div>
-    <button class="MENY"></button>
-  </div>
-  <!-- Vy 3 ETA-->
-  <div class="etaView">
-    <img src="./img/Screenshot_8-12-2025_14119_www.figma.com.jpeg" alt=""> <!--ändra till bilden i figma-->
-    <h1>DINA WONTONS TILLAGAS!</h1>
-    <h2>ETA 5 MIN</h2> <!--den ska kunna räkna ner, fråga Andreas hur han gjorde-->
-    <h3>#kundnummer</h3> <!--ska kunna få ett ideviduellt kundnummer med varje order-->
-    <button class="SE KVITTO"></button><!--ska kunna klicka och hamna på vy 4-->
-    <button class="GÖR EN NY BESTÄLLNING"></button>
-  </div>
-  <!-- Vy 4 kvitto -->
-  <div class="receiptView">
-    <img src="./img/Screenshot2_8-12-2025_14119_www.figma.com.jpeg" alt="">
-    <h1 class="KVITTO"></h1>
-    <h2>#kundnummer</h2> <!--ska kunna få ett ideviduellt kundnummer med varje order-->
-    <div class="KARLSTAD"></div>
-    <div class="antal beställda items"></div>
-    <div class="dotted-row"></div>
-    <div class="pris SEK"></div>
-    >
-    <div class="SWEET-CHILI-DIP"></div>
-    <div class="antal beställda items"></div>
-    <div class="dotted-row"></div>
-    <div class="pris SEK"></div>
+    <!-- Vy 3 ETA-->
+    <div class="etaView">
+      <img src="./img/Screenshot_8-12-2025_14119_www.figma.com.jpeg" alt=""> <!--ändra till bilden i figma-->
+      <h1>DINA WONTONS TILLAGAS!</h1>
+      <h2>ETA 5 MIN</h2> <!--den ska kunna räkna ner, fråga Andreas hur han gjorde-->
+      <h3>#kundnummer</h3> <!--ska kunna få ett ideviduellt kundnummer med varje order-->
+      <button class="SE KVITTO"></button><!--ska kunna klicka och hamna på vy 4-->
+      <button class="GÖR EN NY BESTÄLLNING"></button>
+    </div>
+    <!-- Vy 4 kvitto -->
+    <div class="receiptView">
+      <img src="./img/Screenshot2_8-12-2025_14119_www.figma.com.jpeg" alt="">
+      <h1 class="KVITTO"></h1>
+      <h2>#kundnummer</h2> <!--ska kunna få ett ideviduellt kundnummer med varje order-->
+      <div class="KARLSTAD"></div>
+      <div class="antal beställda items"></div>
+      <div class="dotted-row"></div>
+      <div class="pris SEK"></div>
+      >
+      <div class="SWEET-CHILI-DIP"></div>
+      <div class="antal beställda items"></div>
+      <div class="dotted-row"></div>
+      <div class="pris SEK"></div>
 
-    <div class="GUACAMOLE"></div>
-    <div class="antal beställda items"></div>
-    <div class="dotted-row"></div>
-    <div class="pris SEK"></div>
+      <div class="GUACAMOLE"></div>
+      <div class="antal beställda items"></div>
+      <div class="dotted-row"></div>
+      <div class="pris SEK"></div>
 
-    <div class="FANTS ORANGE"></div>
-    <div class="antal beställda items"></div>
-    <div class="dotted-row"></div>
-    <div class="pris SEK"></div>
+      <div class="FANTS ORANGE"></div>
+      <div class="antal beställda items"></div>
+      <div class="dotted-row"></div>
+      <div class="pris SEK"></div>
 
-    <div class="FANTA-EXOTIC"></div>
-    <div class="antal beställda items"></div>
-    <div class="dotted-row"></div>
-    <div class="pris SEK"></div>
+      <div class="FANTA-EXOTIC"></div>
+      <div class="antal beställda items"></div>
+      <div class="dotted-row"></div>
+      <div class="pris SEK"></div>
 
-    <div class="TOTAL för beställning ink 20% moms"></div>
-    <button class="GÖR NY BESTÄLLNING"></button>
-  </div>
+      <div class="TOTAL för beställning ink 20% moms"></div>
+      <button class="GÖR NY BESTÄLLNING"></button>
+    </div>
 </body>
 
-<!-- lägg till rätt färger, kim gav i chatten -->
+<!--färger food-truck:
+Grön:      #489078
+Mörkgrå: #353131
+Ljusgrå: #605858
+Vit:      #605858
+Röd:     #EB5757
+Font: Frutiger Next Bold (enligt chat GPT)-->
 
 </html>
