@@ -18,9 +18,11 @@
   /* TODO: varför fungrar det inte? */
 }
 
-.titel {
-  margin-left: 8px;
+.title {
+  margin-left: 2px;
   margin-top: 3px;
+  margin-bottom: 5px;
+  font-size: x-large;
 }
 
 .cart {
@@ -28,7 +30,7 @@
   border: 1px solid #489078;
   width: 4em;
   height: 4em;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   margin: 8px;
 }
@@ -39,32 +41,42 @@
   align-items: center;
   background-color: #605858;
   border-right: 1px solid #605858;
-  border-bottom: 0.2px solid white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom: 0.2px solid #605858;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
   padding-bottom: 1em;
-  padding-left: 1px;
+  padding-left: 8px;
   padding-right: 1px;
   gap: 5px;
-}
+  /* 
+  &:hover {
+    cursor: pointer;
+    background-color: #353131;
+    color: white;
+  }
 
-.wonton-wrapper>div {
-  width: 100%;
-  height: 2em;
-  box-sizing: border-box;
+  a:hover {
+    color: white;
+  } */
+
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
 }
 
 .wonton-item {
-  /* display: grid; */
   text-transform: uppercase;
-  /* align-content: stretch; */
   background-color: #605858;
-  font-size: medium;
+  text-align: left;
+  font-size: small;
   font-weight: bold;
   color: white;
   padding-top: 1em;
@@ -79,15 +91,18 @@
   align-self: center;
   color: white;
   padding: 0em;
+  align-self: end;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 
 .wonton-price {
   background-color: #605858;
+  text-align: left;
   text-transform: uppercase;
-  font-size: medium;
+  font-size: small;
   font-weight: bold;
+  
   color: white;
   padding-top: 1em;
   grid-column: 3 / 4;
@@ -96,7 +111,7 @@
 
 
 .wonton-ingredients {
-  /* display: ; */
+  text-align: left;
   background-color: #605858;
   font-size: x-small;
   color: white;
@@ -112,15 +127,29 @@
   box-sizing: border-box;
   background-color: #489078;
   color: white;
-  /* padding: 0.8em; */
 }
 
 /* Dip /////////////////////////////////////////// */
 /* styla dip och drink tillsammans för de har samma syling */
 
+.dipp-text {
+  margin-top: 1em;
+}
+
+.dipsauce-wrapper {
+  background-color: #837b7b;
+  color: white;
+  border: #837b7b;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: x-small;
+}
+
 .dipsauce-information {
-  background-color: rgb(150, 150, 243);
+  background-color: #605858;
   border-radius: 4px;
+  margin: 5px;
+  padding: 8px;
 }
 
 .dipsauce-item {
@@ -155,14 +184,30 @@
   grid-row: 1 / 2;
 }
 
-.dipsauce-information {
+/* .dipsauce-information {
   box-sizing: border-box;
   background-color: #489078;
   color: white;
-  /* padding: 0.8em; */
-}
+  padding: 0.8em; */
+
 
 /* Drink ////////////////////////////////////////// */
+
+.drink-text {
+  margin-top: 1em;
+}
+
+.drink-wrapper {
+  background-color: #837b7b;
+  color: white;
+  border: #837b7b;
+  /* border-right: 1px solid #948b8b;
+  border-bottom: 0.2px solid #948b8b; */
+  border-radius: 5px;
+  margin: 5px;
+  font-size: x-small;
+}
+
 .drink-item {
   background-color: #605858;
   color: white;
@@ -188,7 +233,7 @@
 }
 
 .drink-ingredients {
-  background-color: #605858;
+  background-color: #5f5c5c;
   color: white;
   padding: 0.8em;
   grid-column: 3 / 4;
@@ -197,7 +242,13 @@
 
 .drink-information {
   box-sizing: border-box;
-  background-color: #489078;
+  background-color: #605858;
+  border-radius: 5px;
   color: white;
-  /* padding: 0.8em; */
+  margin: 5px;
+  padding: 8px;
+}
+
+.drink-text {
+  margin-top: 1px;
 }
