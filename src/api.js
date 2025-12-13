@@ -43,19 +43,15 @@ async function sendRequest(url) {
   }
 }
 
-//TODO: gör till en funnktion och exportera denna 
 
 async function requestWonton() {
 
   let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
 
-  // let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
-
-  //TODO: varför får jag 500 med tenant
+  // let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)  TODO!!
 
   return result;
 }
-
 
 async function requestDip() {
 
@@ -64,11 +60,11 @@ async function requestDip() {
   return result;
 }
 
-async function requestDrinks() {
+async function requestDrink() {
 
-  let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=dip');
+  let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=drink');
 
   return result;
 }
 
-export { requestDrinks, requestWonton, requestDip,  };
+export { requestDrink, requestWonton, requestDip,  };

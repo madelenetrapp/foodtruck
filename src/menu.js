@@ -1,9 +1,9 @@
 console.log('hej');
 
-import {requestWonton, requestDip, requestDrinks} from './api.js';
+import { requestWonton, requestDip, requestDrink } from './api.js';
 let wontonResult = await requestWonton();
 let dipResult = await requestDip();
-let drinksResult = await requestWonton();
+let drinkResult = await requestDrink();
 
 //button for cart TODO: lägg till bild
 const btn = document.querySelector('.cart');
@@ -12,11 +12,22 @@ btn.addEventListener('click', () => {
   console.log('Klick');
 });
 
-//TODO:varje div ska vara click- en funktion?
-//funktion for div wonton
+//function för att lägga in information i varukorgen
+function addToCart(name, price) {
+  const cartList = document.querySelector('.cart-list');
+
+  const item = document.createElement('div');
+  item.classList.add('cart-item');
+  item.innerText = `${name} - ${price}`;
+
+  cartList.appendChild(item);
+}
+
 function addWontonInformation(wontonInformation) {
 
-  
+  const button = document.createElement('button');
+  button.classList.add('wonton-wrapper');
+
   const wontonItem = document.createElement('div');
   const wontonRow = document.createElement('div');
   const wontonPrice = document.createElement('div');
@@ -29,14 +40,21 @@ function addWontonInformation(wontonInformation) {
 
   wontonItem.innerText = wontonInformation.name;
   wontonPrice.innerText = wontonInformation.price;
-  wontonIngredients.innerText = wontonInformation.ingredients;
+  wontonIngredients.innerText = wontonInformation.ingredients.join(' ');
 
-  const domWontonInformation = document.querySelector('.wonton-information');
+  // const domWontonInformation = document.querySelector('.wonton-information');
+  //TODO: vad gör jag med denna??
 
-  domWontonInformation.appendChild(wontonItem);
-  domWontonInformation.appendChild(wontonRow);
-  domWontonInformation.appendChild(wontonPrice);
-  domWontonInformation.appendChild(wontonIngredients);
+  button.appendChild(wontonItem);
+  button.appendChild(wontonRow);
+  button.appendChild(wontonPrice);
+  button.appendChild(wontonIngredients);
+
+  button.addEventListener('click', () => {
+    addToCart(wontonItem.name, wontonPrice.name)
+  });
+
+  document.querySelector('.wonton-information').appendChild(button);
 
 }
 
@@ -48,75 +66,69 @@ wontonResult.items.forEach(entry => {
 //function for div dip
 function addDipInformation(dipItem) {
 
+  const button = document.createElement('button');
+  button.classList.add('dipsauce-wrapper');
+
   const dipSauce = document.createElement('div')
-  const dottedRow = document.createElement('div');
+  const dipRow = document.createElement('div');
   const price = document.createElement('div')
- 
+
 
   dipSauce.classList.add('dipSauce');
-  dottedRow.classList.add('dotted-row');
+  dipRow.classList.add('dotted-row');
   price.classList.add('dip-price');
 
 
   dipSauce.innerText = dipItem.name;
   price.innerText = dipItem.price;
 
-  const domDipInformation = document.querySelector('.dipsauce');
+  // const domDipSauceInformation = document.querySelector('.dipsauce');
+  //TODO: vad gör jag med denna??
 
-  domDipInformation.appendChild(dipSauce);
-  domDipInformation.appendChild(dottedRow);
-  domDipInformation.appendChild(price);
+  button.appendChild(dipSauce);
+  button.appendChild(dipRow);
+  button.appendChild(price);
+
+  button.addEventListener('click', () => {
+     addToCart(dipItem.name, dipPrice.name)
+  });
+  document.querySelector('.dipsauce-information').appendChild(button);
 }
 
 dipResult.items.forEach(entry => {
   addDipInformation(entry);
 })
 
-function addDrinksInformation(drinksItem) {
+//function för drinks
+function addDrinkInformation(drinkItem) {
 
-  const drinks = document.createElement('div')
-  const dottedRow = document.createElement('div');
+  const button = document.createElement('button');
+  button.classList.add('drink-wrapper');
+
+  const drink = document.createElement('div')
+  const drinkRow = document.createElement('div');
   const price = document.createElement('div')
-  const fantaOrange = document.createElement('div');
-  const fantaExotic = document.createElement('div');
-  const cocaCola = document.createElement('div');
-  const sprite = document.createElement('div');
-  const lokaGranatäpple = document.createElement('div');
-  const lokaCitrus = document.createElement('div');
 
-  drinks.classList.add('drinks');
-  dottedRow.classList.add('dotted-row');
+  drink.classList.add('drink');
+  drinkRow.classList.add('dotted-row');
   price.classList.add('dip-price');
-  fantaOrange.classList.add('fanta-orange');
-  fantaExotic.classList.add('fanta-exotic');
-  cocaCola.classList.add('coca-cola');
-  sprite.classList.add('sprite');
-  lokaGranatäpple.classList.add('loka-granatäpple');
-  lokaCitrus.classList.add('loka-citrus');
 
-  dipSauce.innerText = drinksItem.name;
-  dottedRow.innerText = drinksItem.row;
-  price.innerText = drinksItem.price;
-  fantaOrange.innerText = drinksItem.price;
-  fantaExotic.innerText = drinksItem.price;
-  cocaCola.innerText = drinksItem.price;
-  sprite.innerText = drinksItem.price;
-  lokaGranatäpple.innerText = drinksItem.price;
-  lokaCitrus.innerText = drinksItem.price;
+  drink.innerText = drinkItem.name;
+  price.innerText = drinkItem.price;
 
-  const DomDrinksItem = document.querySelector('.drinks-options');
+  // const DomDrinkItem = document.querySelector('.drink-options');
+  //Vad gör jag med denna??
 
-  foodOptions.appendChild(dipSauce);
-  foodOptions.appendChild(dottedRow);
-  foodOptions.appendChild(price);
-  foodOptions.appendChild(fantaOrange);
-  foodOptions.appendChild(fantaExotic);
-  foodOptions.appendChild(cocaCola);
-  foodOptions.appendChild(sprite);
-  foodOptions.appendChild(lokaGranatäpple);
-  foodOptions.appendChild(lokaCitrus);
+  button.appendChild(drink);
+  button.appendChild(drinkRow);
+  button.appendChild(price);
+
+  button.addEventListener('click', () => {
+     addToCart(drinkItem.name, drinkPrice.name)
+  });
+  document.querySelector('.drink-information').appendChild(button);
 }
 
-drinksResult.items.forEach(entry => {
-  addDrinksInformation(entry);
+drinkResult.items.forEach(entry => {
+  addDrinkInformation(entry);
 })
