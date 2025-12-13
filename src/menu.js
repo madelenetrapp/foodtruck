@@ -39,8 +39,8 @@ function addWontonInformation(wontonInformation) {
   wontonIngredients.classList.add('wonton-ingredients');
 
   wontonItem.innerText = wontonInformation.name;
-  wontonPrice.innerText = wontonInformation.price;
-  wontonIngredients.innerText = wontonInformation.ingredients.join(' ');
+  wontonPrice.innerText = wontonInformation.price + ' SEK';
+  wontonIngredients.innerText = wontonInformation.ingredients.join(', ');
 
   // const domWontonInformation = document.querySelector('.wonton-information');
   //TODO: vad gör jag med denna??

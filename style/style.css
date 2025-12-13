@@ -36,49 +36,76 @@
 /* Wonton////////////////////////////////////////////// */
 .wonton-wrapper {
   display: grid;
+  align-items: center;
+  background-color: #605858;
+  border-right: 1px solid #605858;
+  border-bottom: 0.2px solid white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
+  padding-bottom: 1em;
+  padding-left: 1px;
+  padding-right: 1px;
   gap: 5px;
 }
 
-.wonton-wrapper > div {
+.wonton-wrapper>div {
   width: 100%;
-  height: 100%;
+  height: 2em;
   box-sizing: border-box;
 }
 
 .wonton-item {
+  /* display: grid; */
+  text-transform: uppercase;
+  /* align-content: stretch; */
   background-color: #605858;
+  font-size: medium;
+  font-weight: bold;
   color: white;
-  padding: 0.8em;
+  padding-top: 1em;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 
 .wonton-row {
   background-color: #605858;
-  border-bottom: 3px dotted white;
+  border-bottom: 2px dotted white;
+  width: 100%;
+  align-self: center;
   color: white;
-  padding: 0.8em;
+  padding: 0em;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 
 .wonton-price {
   background-color: #605858;
+  text-transform: uppercase;
+  font-size: medium;
+  font-weight: bold;
   color: white;
-  padding: 0.8em;
-  grid-column: 1 / 4;
-  grid-row: 2 / 3;
-}
-
-.wonton-ingredients {
-  background-color: #605858;
-  color: white;
-  padding: 0.8em;
+  padding-top: 1em;
   grid-column: 3 / 4;
   grid-row: 1 / 2;
+}
+
+
+.wonton-ingredients {
+  /* display: ; */
+  background-color: #605858;
+  font-size: x-small;
+  color: white;
+  padding: 0.8em;
+  padding-bottom: 1px;
+  padding-left: 1.5px;
+  padding-right: 1.5px;
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
 }
 
 .wonton-information {
