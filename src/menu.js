@@ -42,9 +42,6 @@ function addWontonInformation(wontonInformation) {
   wontonPrice.innerText = wontonInformation.price + ' SEK';
   wontonIngredients.innerText = wontonInformation.ingredients.join(', ');
 
-  // const domWontonInformation = document.querySelector('.wonton-information');
-  //TODO: vad gör jag med denna??
-
   button.appendChild(wontonItem);
   button.appendChild(wontonRow);
   button.appendChild(wontonPrice);
@@ -73,24 +70,22 @@ function addDipInformation(dipItem) {
   const dipRow = document.createElement('div');
   const price = document.createElement('div')
 
+  const lowerCase = s => s.toLowerCase();
 
   dipSauce.classList.add('dipSauce');
   dipRow.classList.add('dotted-row');
   price.classList.add('dip-price');
 
 
-  dipSauce.innerText = dipItem.name;
-  price.innerText = dipItem.price;
-
-  // const domDipSauceInformation = document.querySelector('.dipsauce');
-  //TODO: vad gör jag med denna??
+  dipSauce.innerText = lowerCase(dipItem.name);
+  // price.innerText = dipItem.price + 'SEK';
 
   button.appendChild(dipSauce);
-  button.appendChild(dipRow);
+  // button.appendChild(dipRow);
   button.appendChild(price);
 
   button.addEventListener('click', () => {
-     addToCart(dipItem.name, dipPrice.name)
+     addToCart(dipItem.name, dipprice.name)
   });
   document.querySelector('.dipsauce-information').appendChild(button);
 }
@@ -98,6 +93,7 @@ function addDipInformation(dipItem) {
 dipResult.items.forEach(entry => {
   addDipInformation(entry);
 })
+
 
 //function för drinks
 function addDrinkInformation(drinkItem) {
@@ -114,13 +110,11 @@ function addDrinkInformation(drinkItem) {
   price.classList.add('dip-price');
 
   drink.innerText = drinkItem.name;
-  price.innerText = drinkItem.price;
+  // price.innerText = drinkItem.price;
 
-  // const DomDrinkItem = document.querySelector('.drink-options');
-  //Vad gör jag med denna??
 
   button.appendChild(drink);
-  button.appendChild(drinkRow);
+  // button.appendChild(drinkRow);
   button.appendChild(price);
 
   button.addEventListener('click', () => {
