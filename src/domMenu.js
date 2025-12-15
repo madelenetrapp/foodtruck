@@ -1,6 +1,6 @@
-export const cart = [];
-
 import { requestWonton, requestDip, requestDrink } from './api.js';
+import { addToCart } from './domCart.js';
+
 let wontonResult = await requestWonton();
 let dipResult = await requestDip();
 let drinkResult = await requestDrink();
@@ -12,18 +12,7 @@ btn.addEventListener('click', () => {
   console.log('Klick');
 });
 
-//function för att lägga in information i varukorgen
-// behöer lagra objektet med ett id
-// behöver göra array
-// behöver add to chart och funktionen
-// anropa addto cart ska skicka in något
-
-function addToCart(item) { // <-------
-  cart.push(item);
-  console.log(cart);
-}
-
-
+//wonton information
 function addWontonInformation(wontonInformation) {
 
   const button = document.createElement('button');

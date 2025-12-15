@@ -19,35 +19,64 @@
 .overlay-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  /* border-radius: 8px; */
+  justify-content: flex-end;
+  font-family: 'Nunito Sans', sans-serif;
   background-color: rgb(240, 234, 234);
-  /* border: 2px solid red; */
   min-width: 300px;
-  min-height: 200px;
+  min-height: 500px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.overlay-back-button {
-  background-color: #343534;
-  color: rgb(250, 248, 248);
-  border: none;
-  /* margin-top: auto; */
-  padding: 3px;
-  cursor: pointer;
+.overlay-cart-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  margin-right: 3em;
+  margin-top: 4em;
 }
 
-.overlay-pay-button {
-  background-color: #343534;
+.overlay-back-button {
+  background-color: #489078;
   color: rgb(250, 248, 248);
+  border: none;
   margin-top: 1em;
+  padding: 3px;
+  cursor: pointer;
 }
 
 .overlay-back-button:hover {
   background-color: #3b7662;
 }
+.overlay-total {
+  font-weight: bold;
+  font-size: small;
+  background-color: rgb(196, 192, 192);
+  height: 3em;
+}
+
+.overlay-pay-button {
+  background-color: #343534;
+  color: rgb(250, 248, 248);
+  height: 3em;
+  margin-top: 1em;
+}
 
 .cart-display {
   margin-bottom: 20px;
+}
+
+@media (min-width: 700px) {
+  .menuView{
+    width: 700px;
+    margin: 50px auto 0 auto;
+  }
+}
+
+@media (min-width: 391px) {
+      body {
+    background-color: #f0f6f2;
+  }
 }
