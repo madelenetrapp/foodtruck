@@ -85,7 +85,7 @@ function addDipInformation(dipItem) {
   button.appendChild(price);
 
   button.addEventListener('click', () => {
-     addToCart(dipItem.name, dipprice.name)
+     addToCart(dipItem.name)
   });
   document.querySelector('.dipsauce-information').appendChild(button);
 }
@@ -118,7 +118,7 @@ function addDrinkInformation(drinkItem) {
   button.appendChild(price);
 
   button.addEventListener('click', () => {
-     addToCart(drinkItem.name, drinkPrice.name)
+     addToCart(drinkItem.name)
   });
   document.querySelector('.drink-information').appendChild(button);
 }

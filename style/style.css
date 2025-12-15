@@ -6,7 +6,6 @@
   font-weight: bold;
   background-color: #489078;
   color: white;
-  border-bottom: 1px solid rgb(116, 184, 146);
   max-width: 100%;
   padding: 15px;
   padding-bottom: 5em;
@@ -123,6 +122,11 @@
   border-radius: 3px;
   margin: 5px;
   padding-right: 10px;
+
+        &:hover {
+    cursor: pointer;
+    background-color: #353131;
+  }
 }
 
 .dip-text,
@@ -154,15 +158,9 @@
   text-transform: lowercase;
 }
 
-.dipsauce-item,
+.dipSauce,
 .drink-item {
-  background-color: #605858;
   color: white;
-
-      &:hover {
-    cursor: pointer;
-    background-color: #353131;
-  }
 }
 
 .dipsauce-price,
@@ -179,8 +177,15 @@
   margin: 8px;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 700px) {
   .menuView{
-    max-width: 50%;
+    width: 700px;
+    margin: 50px auto 0 auto;
+  }
+}
+
+@media (min-width: 391px) {
+      body {
+    background-color: #f0f6f2;
   }
 }
