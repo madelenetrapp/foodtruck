@@ -1,4 +1,4 @@
-console.log('hej');
+export const cart = [];
 
 import { requestWonton, requestDip, requestDrink } from './api.js';
 let wontonResult = await requestWonton();
@@ -13,15 +13,16 @@ btn.addEventListener('click', () => {
 });
 
 //function för att lägga in information i varukorgen
-function addToCart(name, price) {
-  const cartList = document.querySelector('.cart-list');
+// behöer lagra objektet med ett id
+// behöver göra array
+// behöver add to chart och funktionen
+// anropa addto cart ska skicka in något
 
-  const item = document.createElement('div');
-  item.classList.add('cart-item');
-  item.innerText = `${name} - ${price}`;
-
-  cartList.appendChild(item);
+function addToCart(item) { // <-------
+  cart.push(item);
+  console.log(cart);
 }
+
 
 function addWontonInformation(wontonInformation) {
 
@@ -48,7 +49,7 @@ function addWontonInformation(wontonInformation) {
   button.appendChild(wontonIngredients);
 
   button.addEventListener('click', () => {
-    addToCart(wontonItem.name, wontonPrice.name)
+    addToCart(wontonInformation)
   });
 
   document.querySelector('.wonton-information').appendChild(button);
