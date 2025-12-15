@@ -67,4 +67,4 @@ async function requestDrink() {
   return result;
 }
 
-export { requestDrink, requestWonton, requestDip,  };
+export { requestDrink, requestWonton, requestDip };

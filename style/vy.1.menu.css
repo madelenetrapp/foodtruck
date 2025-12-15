@@ -1,0 +1,191 @@
+.menuView {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+  background-color: #489078;
+  color: white;
+  max-width: 100%;
+  padding: 15px;
+  padding-bottom: 5em;
+}
+
+.cart-list {
+  display: flex;
+  justify-content: end;
+}
+
+.title {
+  font-size: x-large;
+  margin-left: 2px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.cart {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  border: 1px solid #489078;
+  border-radius: 4px;
+  width: 4em;
+  height: 4em;
+}
+
+.wonton-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #605858;
+  border-right: 1px solid #605858;
+  border-bottom: 0.2px solid #605858;
+  width: 100%;
+  padding-bottom: 1em;
+  padding-left: 8px;
+  padding-right: 10px;
+  gap: 5px;
+
+  */ &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #353131;
+  }
+
+}
+
+.wonton-item {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: medium;
+  font-weight: bold;
+  color: white;
+  padding-top: 1em;
+}
+
+.wonton-row,
+.dipsauce-row,
+.drink-row {
+  display: flex;
+  flex-grow: 2;
+  align-self: center;
+  align-self: end;
+  background-color: #605858;
+  color: white;
+  border-bottom: 2px dotted white;
+  width: 50%;
+  padding: 0em;
+  padding-right: 1px;
+}
+
+.wonton-price {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: small;
+  font-weight: bold;
+  color: white;
+  padding-top: 1em;
+}
+
+.wonton-ingredients {
+  display: flex;
+  text-align: left;
+  font-size: small;
+  color: white;
+  padding: 0.8em;
+  padding-bottom: 1px;
+  padding-left: 1.5px;
+  padding-right: 1.5px;
+}
+
+.wonton-information {
+  box-sizing: border-box;
+  background-color: #489078;
+  color: white;
+}
+
+.dipsauce-wrapper,
+.drink-wrapper {
+  box-sizing: border-box;
+  font-size: x-small;
+  background-color: #837b7b;
+  color: white;
+  border: #837b7b;
+  border-radius: 3px;
+  margin: 5px;
+  padding-right: 10px;
+
+        &:hover {
+    cursor: pointer;
+    background-color: #353131;
+  }
+}
+
+.dip-text,
+.drink-text {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: small;
+  font-weight: bold;
+  background-color: #605858;
+  color: white;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.dipsauce-information,
+.drink-information {
+  background-color: #605858;
+  border-radius: 4px;
+  margin-top: 8px;
+  padding: 7px;
+  gap: 5em;
+}
+
+.dipsauce-information {
+  text-transform: lowercase;
+}
+
+.dipSauce,
+.drink-item {
+  color: white;
+}
+
+.dipsauce-price,
+.drink-price {
+  font-size: small;
+  background-color: #605858;
+  color: white;
+}
+
+.dipSauce,
+.drink {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+@media (min-width: 700px) {
+  .menuView{
+    width: 700px;
+    margin: 50px auto 0 auto;
+  }
+}
+
+@media (min-width: 391px) {
+      body {
+    background-color: #f0f6f2;
+  }
+}
