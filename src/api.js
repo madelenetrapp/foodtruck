@@ -3,11 +3,13 @@ const apiKey = "yum-BHRyCR5Lgznl28Tr";
 async function sendTenantRequest(url, apiKey) {
   try {
     const response = await fetch(url, {
-      method: "POST", headers: { 'x-zocom': apiKey }, body: {
-        "name": "Madelene Trapp"
-      }
+      method: "POST", headers: { 'x-zocom': apiKey, 'Content-Type': 'application/json' },
+      body:({ name: "Madelene Trapp" }) //
     })
-    if (response.status !== 200) {
+
+    console.log("STATUS:", response.status)
+
+    if (!response.ok) { //
       console.log('request wasen´t successful. Code:' + response.status)
       return null
     }
@@ -15,7 +17,7 @@ async function sendTenantRequest(url, apiKey) {
     return data
   }
   catch {
-    if (!responce) {
+    if (!response) {
     }
     else if (!data) {
     }
@@ -34,7 +36,7 @@ async function sendRequest(url) {
     return data
   }
   catch {
-    if (!responce) {
+    if (!response) {
     }
     else if (!data) {
 
@@ -48,7 +50,7 @@ async function requestWonton() {
 
   let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
 
-  // let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)  TODO!!
+  // let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
 
   return result;
 }

@@ -11,13 +11,16 @@ const content = document.createElement('div');
 content.classList.add('overlay-content');
 // content.textContent = 'Här är din varukorg';
 
+//lägger till item i cart TODO
 const cart = [];
 
 export function addToCart(item) {
   cart.push(item);
   console.log(cart);
+  identifyOrderdItems();
+  updateCartInformation();
 }
-
+//skapar och fyller divar till varukorgen
 function addCartInformation(cartInformation) {
 
   const cartWrapper = document.createElement('div');
@@ -40,19 +43,39 @@ function addCartInformation(cartInformation) {
   content.appendChild(Row);
   content.appendChild(Price);
   cartInfoDiv.appendChild(cartWrapper);
-
 }
 
-// funktion anropa funktionen när det ska köras
+// funktion anropa funktionen när det ska köras TODO
 function updateCartInformation() {
   const cartDisplay = document.querySelector('.cart-display');
   cartDisplay.innerText = '',
 
-    cart.forEach(entry => {
-      addCartInformation(entry);
+    Object.keys(orderdItems).forEach(category => {
+      orderdItems[category].forEach(item => {
+        addCartInformation(item);
+      })
     });
-
 }
+
+//container för + och - knapparna
+const buttonContainer = document.createElement('div');
+buttonContainer.classList.add('button-container');
+
+content.appendChild(buttonContainer);
+//ANVÄNDER APPENDcHILDE FÖR ATT LÄGGA TILL BUTTONCONTAINER I DOM??
+
+//knapp för fler antal items
+const itemSelected = document.createElement('button');
+itemSelected.textContent = '+';
+itemSelected.classList.add('item-selected');
+buttonContainer.appendChild(itemSelected);
+
+//knapp för färre antal items
+const itemDismissed = document.createElement('button');
+itemDismissed.textContent = '-';
+itemDismissed.classList.add('item-dismissed');
+buttonContainer.appendChild(itemDismissed);
+
 
 //bild i högra hörnet
 const cartImage = document.createElement('img');
@@ -63,7 +86,7 @@ content.appendChild(cartImage);
 //ny div för items
 const cartDisplay = document.createElement('div');
 cartDisplay.classList.add('cart-display');
-content.appendChild(cartDisplay);
+content.appendChild(cartDisplay);   //deklarera före användning?
 
 // div för total
 const totalDiv = document.createElement('div');
@@ -85,13 +108,57 @@ backButton.textContent = 'Tillbaka till meny';
 //?????????
 content.appendChild(backButton);
 overlay.appendChild(content);
-document.body.appendChild(overlay);
+document.body.appendChild(overlay);  //BODY??
+
+//struktur för orderd items TODO
+const orderdItems = {
+  wonton: [],
+  dip: [],
+  drink: [],
+};
+
+//identifiera items, sorterar cart i categorier TODO
+function identifyOrderdItems() {
+  orderdItems.wonton = [];
+  orderdItems.dip = [];
+  orderdItems.drink = [];
+
+  cart.forEach(item => {
+    if (item.category === 'wonton') orderdItems.wonton.push(item);
+    if (item.category === 'dip') orderdItems.dip.push(item);
+    if (item.category === 'drink') orderdItems.drink.push(item);
+  })
+  console.log(orderdItems);
+}
+
+// function addCartInformation(cartInformation) {
+//   const cartWrapper = document.createElement('div');
+//   cartWrapper.classList.add('cart-wrapper');
+
+//   const item = document.createElement('div');
+//   const price = document.createElement('div');
+
+//   item.innerText = cartInformation.name;
+//   price.innerText = cartInformation.price + 'SEK';
+
+//   cartWrapper.appendChild(item);
+//   cartWrapper.appendChild(price);
+
+//   cartDisplay.appendChild(cartWrapper);
+// }
+
+// uppdatera overlay
+// function updateCartInformation() {
+//   cartDisplay.innerText = '';
+//   cart.forEach(entry => addCartInformation(entry));
+// }
 
 //visa overlay
 button.addEventListener('click', () => {
   overlay.classList.add('active');
 
-  updateCartInformation();
+  identifyOrderdItems();
+  updateCartInformation(); //gör ett anrop (anropar funktionen när man klickar på knappen)
 })
 
 //stäng via knapp
