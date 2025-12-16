@@ -1,5 +1,3 @@
-// import { cart } from './domMenu.js'
-
 // skapar overlay
 const button = document.querySelector('.cart');
 button.textContent = 'klicka';
@@ -9,52 +7,63 @@ overlay.classList.add('overlay');
 
 const content = document.createElement('div');
 content.classList.add('overlay-content');
-// content.textContent = 'Här är din varukorg';
 
-//lägger till item i cart TODO
+//lägger till item i cart 
 const cart = [];
 
 export function addToCart(item) {
   cart.push(item);
   console.log(cart);
   identifyOrderdItems();
-  updateCartInformation();
 }
+
 //skapar och fyller divar till varukorgen
-function addCartInformation(cartInformation) {
+function addCartInformation(cartInformation) { //cart info = ett array
+
+  //spar hur långt det är och sparar det första item
+  let amount = cartInformation.length //sparar längden på cart info
+  let firstItem = cartInformation[0]; //hämtar ut första item i arreyen, för att det är null
 
   const cartWrapper = document.createElement('div');
   cartWrapper.classList.add('cart-wrapper');
 
   const Item = document.createElement('div');
+  const showAmount = document.createElement('div');
   const Row = document.createElement('div');
   const Price = document.createElement('div');
-  const cartInfoDiv = document.querySelector('.cart-display');
-
+  // const cartInfoDiv = document.querySelector('.cart-display');
 
   Item.classList.add('cart-item');
+  showAmount.classList.add('amount-items');
   Row.classList.add('cart-row');
   Price.classList.add('cart-price');
 
-  Item.innerText = cartInformation.name;
-  Price.innerText = cartInformation.price + ' SEK';
+  Item.innerText = firstItem.name;
+  showAmount.innerText = amount;
+  Price.innerText = firstItem.price + ' SEK';
 
-  content.appendChild(Item);
-  content.appendChild(Row);
-  content.appendChild(Price);
+  cartWrapper.appendChild(Item);
+  cartWrapper.appendChild(showAmount);
+  cartWrapper.appendChild(Row);
+  cartWrapper.appendChild(Price);
+  // cartInfoDiv.appendChild(cartWrapper);
+
+  const cartInfoDiv = document.querySelector('.cart-display');
+  // cartInfoDiv.innerText = '';
   cartInfoDiv.appendChild(cartWrapper);
 }
 
 // funktion anropa funktionen när det ska köras TODO
-function updateCartInformation() {
+function updateCartInformation(items) {
   const cartDisplay = document.querySelector('.cart-display');
-  cartDisplay.innerText = '',
+  cartDisplay.innerText = '';
 
-    Object.keys(orderdItems).forEach(category => {
-      orderdItems[category].forEach(item => {
-        addCartInformation(item);
-      })
-    });
+  for (const item in items) { //kör en loop för varje items som man klickar på //of eller in går ingenom alla (loopar igenom) proportis ett objekt har
+    // items.forEach(item => {
+    console.log('hej')
+    console.log(item)
+    addCartInformation(items[item]); //hämtar ut högen
+  };
 }
 
 //container för + och - knapparna
@@ -79,7 +88,7 @@ buttonContainer.appendChild(itemDismissed);
 
 //bild i högra hörnet
 const cartImage = document.createElement('img');
-cartImage.src = './img/sc'; //varför går det inte att skriva adressen?
+// cartImage.src = './img/sc'; //varför går det inte att skriva adressen?
 cartImage.classList.add('overlay-cart-image');
 content.appendChild(cartImage);
 
@@ -111,41 +120,29 @@ overlay.appendChild(content);
 document.body.appendChild(overlay);  //BODY??
 
 //struktur för orderd items TODO
-const orderdItems = {
-  wonton: [],
-  dip: [],
-  drink: [],
-};
+// const orderdItems = {
+//   wonton: [],
+//   dip: [],
+//   drink: [],
+// };
 
 //identifiera items, sorterar cart i categorier TODO
 function identifyOrderdItems() {
-  orderdItems.wonton = [];
-  orderdItems.dip = [];
-  orderdItems.drink = [];
+
+  let items = {};  //ett tomt objekt med arrayer
 
   cart.forEach(item => {
-    if (item.category === 'wonton') orderdItems.wonton.push(item);
-    if (item.category === 'dip') orderdItems.dip.push(item);
-    if (item.category === 'drink') orderdItems.drink.push(item);
+    if (items[item.id]) {
+    }
+    else {
+      items[item.id] = [];
+    }
+    items[item.id].push(item); //skapar en tom rad och lägger till item även om det första gången är null
   })
-  console.log(orderdItems);
+  console.log(items);
+
+  return items;
 }
-
-// function addCartInformation(cartInformation) {
-//   const cartWrapper = document.createElement('div');
-//   cartWrapper.classList.add('cart-wrapper');
-
-//   const item = document.createElement('div');
-//   const price = document.createElement('div');
-
-//   item.innerText = cartInformation.name;
-//   price.innerText = cartInformation.price + 'SEK';
-
-//   cartWrapper.appendChild(item);
-//   cartWrapper.appendChild(price);
-
-//   cartDisplay.appendChild(cartWrapper);
-// }
 
 // uppdatera overlay
 // function updateCartInformation() {
@@ -157,8 +154,9 @@ function identifyOrderdItems() {
 button.addEventListener('click', () => {
   overlay.classList.add('active');
 
-  identifyOrderdItems();
-  updateCartInformation(); //gör ett anrop (anropar funktionen när man klickar på knappen)
+  const orderdItems = identifyOrderdItems();
+  updateCartInformation(orderdItems); //gör ett anrop (anropar funktionen när man klickar på knappen)
+
 })
 
 //stäng via knapp

@@ -66,7 +66,6 @@ function addDipInformation(dipItem) {
   dipRow.classList.add('dotted-row');
   price.classList.add('dip-price');
 
-
   dipSauce.innerText = lowerCase(dipItem.name);
   // price.innerText = dipItem.price + 'SEK';
 
@@ -75,7 +74,7 @@ function addDipInformation(dipItem) {
   button.appendChild(price);
 
   button.addEventListener('click', () => {
-     addToCart(dipItem.name)
+     addToCart(dipItem)
   });
   document.querySelector('.dipsauce-information').appendChild(button);
 }
@@ -108,7 +107,7 @@ function addDrinkInformation(drinkItem) {
   button.appendChild(price);
 
   button.addEventListener('click', () => {
-     addToCart(drinkItem.name)
+     addToCart(drinkItem)
   });
   document.querySelector('.drink-information').appendChild(button);
 }
