@@ -1,7 +1,8 @@
-const apiKey = "yum-BHRyCR5Lgznl28Tr";
+const apiKey = "yum-BHRyCR5Lgznl28Tr"; //hämtar en gång
 
-async function sendTenantRequest(url, apiKey) {
+async function sendTenantRequest(url, apiKey) { //bortkommenterad längre ner får fel 500 <----
   try {
+    console.log('send tenant request', url, apiKey);
     const response = await fetch(url, {
       method: "POST", headers: { 'x-zocom': apiKey, 'Content-Type': 'application/json' },
       body:({ name: "Madelene Trapp" }) //
@@ -50,7 +51,7 @@ async function requestWonton() {
 
   let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
 
-  // let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', result)
+  let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', apiKey)
 
   return result;
 }

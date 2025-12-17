@@ -14,7 +14,6 @@ const cart = [];
 export function addToCart(item) {
   cart.push(item);
   console.log(cart);
-  identifyOrderdItems();
 }
 
 //skapar och fyller divar till varukorgen
@@ -85,7 +84,6 @@ itemDismissed.textContent = '-';
 itemDismissed.classList.add('item-dismissed');
 buttonContainer.appendChild(itemDismissed);
 
-
 //bild i högra hörnet
 const cartImage = document.createElement('img');
 // cartImage.src = './img/sc'; //varför går det inte att skriva adressen?
@@ -117,16 +115,9 @@ backButton.textContent = 'Tillbaka till meny';
 //?????????
 content.appendChild(backButton);
 overlay.appendChild(content);
-document.body.appendChild(overlay);  //BODY??
+document.body.appendChild(overlay); //läggs till sist i body som ett childelement
 
-//struktur för orderd items TODO
-// const orderdItems = {
-//   wonton: [],
-//   dip: [],
-//   drink: [],
-// };
-
-//identifiera items, sorterar cart i categorier TODO
+//identifiera items, sorterar cart i categorier TODO22
 function identifyOrderdItems() {
 
   let items = {};  //ett tomt objekt med arrayer
@@ -144,19 +135,12 @@ function identifyOrderdItems() {
   return items;
 }
 
-// uppdatera overlay
-// function updateCartInformation() {
-//   cartDisplay.innerText = '';
-//   cart.forEach(entry => addCartInformation(entry));
-// }
-
 //visa overlay
 button.addEventListener('click', () => {
   overlay.classList.add('active');
 
   const orderdItems = identifyOrderdItems();
   updateCartInformation(orderdItems); //gör ett anrop (anropar funktionen när man klickar på knappen)
-
 })
 
 //stäng via knapp
