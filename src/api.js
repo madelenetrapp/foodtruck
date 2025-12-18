@@ -1,73 +1,79 @@
-const apiKey = "yum-BHRyCR5Lgznl28Tr"; //hämtar en gång
-
-async function sendTenantRequest(url, apiKey) { //bortkommenterad längre ner får fel 500 <----
-  try {
-    console.log('send tenant request', url, apiKey);
-    const response = await fetch(url, {
-      method: "POST", headers: { 'x-zocom': apiKey, 'Content-Type': 'application/json' },
-      body:({ name: "Madelene Trapp" }) //
-    })
-
-    console.log("STATUS:", response.status)
-
-    if (!response.ok) { //
-      console.log('request wasen´t successful. Code:' + response.status)
-      return null
-    }
-    const data = await response.json()
-    return data
-  }
-  catch {
-    if (!response) {
-    }
-    else if (!data) {
-    }
-    return null
-  }
-}
+const apiKey = "yum-BHRyCR5Lgznl28Tr"; // hämtar en gång
+const tenantKey = "izu6"; // hämtas en gång
 
 async function sendRequest(url) {
   try {
-    const response = await fetch(url, { headers: { 'x-zocom': apiKey }, method: "GET" })
+    const response = await fetch(url, {
+      headers: { 'x-zocom': apiKey },
+      method: "GET"
+    });
+
     if (response.status !== 200) {
+      return null;
+    }
 
-      return null
-    }
-    const data = await response.json()
-    return data
-  }
-  catch {
-    if (!response) {
-    }
-    else if (!data) {
+    const data = await response.json();
+    return data;
 
-    }
-    return null
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 }
 
-
+// ---- MENU REQUESTS ----
 async function requestWonton() {
-
-  let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton');
-
-  let tenantResult = await sendTenantRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tenants', apiKey)
-
-  return result;
+  return await sendRequest(
+    'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton'
+  );
 }
 
 async function requestDip() {
-
-  let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=dip');
-
-  return result;
+  return await sendRequest(
+    'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=dip'
+  );
 }
 
 async function requestDrink() {
-
-  let result = await sendRequest('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=drink');
-
-  return result;
+  return await sendRequest(
+    'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=drink'
+  );
 }
 
 export { requestDrink, requestWonton, requestDip };
+
+
+// ---- ORDER REQUEST ----
+async function sendOrderRequest(items) {
+  try {
+
+    const itemIds = items.map(item => item.id);
+
+    const response = await fetch(
+      `https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenantKey}/orders`,
+      {
+        method: "POST",
+        headers: {
+          'x-zocom': apiKey,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: itemIds
+        })
+      }
+    );
+
+    if (response.status !== 200) {
+      return null;
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export { sendOrderRequest };

@@ -1,0 +1,38 @@
+.eta-overlay {
+justify-content: center;
+align-items: center;
+position: fixed;
+display: none;
+inset: 0;
+background-color: #489078;
+z-index: 2000;
+}
+
+.eta-overlay.active {
+  display: flex;
+}
+
+.eta-overlay .overlay-content {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.eta-overlay h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.eta-overlay p {
+  font-size: 22px;
+  font-weight: 700;
+}

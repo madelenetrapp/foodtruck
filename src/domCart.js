@@ -7,16 +7,16 @@ overlay.classList.add('overlay');
 
 const content = document.createElement('div');
 content.classList.add('overlay-content');
+document.body.appendChild(overlay);
 
-//lägger till item i cart 
+//cart state
 const cart = [];
-
 export function addToCart(item) {
   cart.push(item);
   console.log(cart);
 }
 
-//skapar och fyller divar till varukorgen
+// cart function--skapar och fyller divar till varukorgen
 function addCartInformation(cartInformation) { //cart info = ett array
 
   //spar hur långt det är och sparar det första item
@@ -107,12 +107,30 @@ payButton.classList.add('overlay-pay-button');
 payButton.textContent = 'TAKE MY MONEY!';
 content.appendChild(payButton);
 
-//tillbaka-knapp
+// --- Flyttad event listener ---
+import { etaOverlay, etaTime } from './domEta.js';
+import { sendOrderRequest } from './api.js';
+
+//pay-button
+payButton.addEventListener('click', async () => {
+  overlay.classList.remove('active');
+  etaOverlay.classList.add('active');
+
+  if (!cart.length) return; 
+
+  const orderResponse = await sendOrderRequest(cart);
+
+  if (!orderResponse) return;
+  
+  etaTime.textContent = `ETA ${orderResponse.etaMinutes} MIN`;
+});
+
+//tillbaka-knapp  TODO: gör ednna knapp i html ist för att minska laggning
 const backButton = document.createElement('button');
 backButton.classList.add('overlay-back-button');
 backButton.textContent = 'Tillbaka till meny';
 
-//?????????
+//????????? TODO: VARFÖR LIGGER DOM HÄR
 content.appendChild(backButton);
 overlay.appendChild(content);
 document.body.appendChild(overlay); //läggs till sist i body som ett childelement
@@ -147,5 +165,3 @@ button.addEventListener('click', () => {
 backButton.addEventListener('click', () => {
   overlay.classList.remove('active')
 })
-
-

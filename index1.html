@@ -7,8 +7,9 @@
   <!-- är detta rätt länk/script?? -->
   <link rel="stylesheet" href="./style/vy.1.menu.css">
   <link rel="stylesheet" href="./style/vy.2.cart.css">
+  <link rel="stylesheet" href="./style/vy.3.eta.css">
   <script type="module" src="./src/domMenu.js"></script>
-  <script type="module" src="./src/domCart.js"></script>
+  <!-- <script type="module" src="./src/domCart.js"></script> -->
   <title>Yum yum give mi sum</title>
 </head>
 
@@ -42,6 +43,7 @@
       </div>
     </div>
   </div>
+  
 
 
   <!-- Vy 3 ETA-->
@@ -56,7 +58,14 @@
   <!-- <button class="SE KVITTO"></button> -->
   <!--ska kunna klicka och hamna på vy 4-->
   <!-- <button class="GÖR EN NY BESTÄLLNING"></button>
-  </div> -->
+  </div> 
+  
+  const payButton = document.createElement('button');
+payButton.classList.add('overlay-pay-button');
+payButton.textContent = 'TAKE MY MONEY!';
+content.appendChild(payButton);
+  
+  -->
   
 </body>
 
