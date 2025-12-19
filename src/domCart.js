@@ -98,8 +98,18 @@ content.appendChild(cartDisplay);   //deklarera före användning?
 // div för total
 const totalDiv = document.createElement('div');
 totalDiv.classList.add('overlay-total');
-totalDiv.textContent = 'TOTALT inkl 20% moms';
+// totalDiv.textContent = 'TOTALT inkl 20% moms';
 content.appendChild(totalDiv);
+
+//totla-summa
+function calculateTotal(cart) {
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price;
+  });
+
+  return total;
+}
 
 //take my money-knapp
 const payButton = document.createElement('button');
@@ -121,7 +131,7 @@ payButton.addEventListener('click', async () => {
   const orderResponse = await sendOrderRequest(cart);
 
   if (!orderResponse) return;
-  
+
   etaTime.textContent = `ETA ${orderResponse.etaMinutes} MIN`;
 });
 
@@ -159,6 +169,12 @@ button.addEventListener('click', () => {
 
   const orderdItems = identifyOrderdItems();
   updateCartInformation(orderdItems); //gör ett anrop (anropar funktionen när man klickar på knappen)
+
+  const total = calculateTotal(cart);
+  const totalWithVat = total * 1.2;
+
+  totalDiv.textContent = `TOTALT (inkl 20% moms): ${totalWithVat.toFixed(2)} SE`;
+
 })
 
 //stäng via knapp
