@@ -5,7 +5,7 @@ import { sendOrderRequest } from './api.js';
 const cart = [];
 
 // overlay
-const cartButton = document.querySelector('.cart'); 
+const cartButton = document.querySelector('.cart');
 const overlay = document.createElement('div');
 overlay.classList.add('overlay');
 const content = document.createElement('div');
@@ -119,7 +119,7 @@ function refreshCartView() {
   const orderedItems = identifyOrderedItems();
   updateCartInformation(orderedItems);
 
-   counter.textContent = cart.length;
+  counter.textContent = cart.length;
 
   const total = calculateTotal(cart);
   totalDiv.textContent = '';

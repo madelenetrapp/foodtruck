@@ -8,6 +8,16 @@ etaOverlay.classList.add('overlay', 'eta-overlay');
 const etaContent = document.createElement('div');
 etaContent.classList.add('overlay-content');
 
+//bild till wonton tillagas
+const wontonImage = document.createElement('img');
+wontonImage.src = 'img/boxtop.svg'; 
+
+// wontonImage.alt = 'Dina wonton tillagas';
+wontonImage.classList.add('wonton-header-image'); 
+
+// Lägg bilden överst i etaContent, innan rubrik
+etaContent.prepend(wontonImage);
+
 //texi i div
 const etaTitle = document.createElement('h2');
 etaTitle.textContent = 'DINA WONTONS TILLAGAS!';
@@ -21,6 +31,18 @@ etaOverlay.appendChild(etaContent);
 document.body.appendChild(etaOverlay);
 
 export { etaOverlay, etaTime }
+
+//ny beställning button
+const newOrderButtan = document.createElement('button');
+newOrderButtan.textContent = 'gör en ny beställning';
+newOrderButtan.classList.add('eta-new-order-button');
+
+etaContent.appendChild(newOrderButtan);
+
+//klick stänga overlay- START NEW GAME HAHAHAHA
+newOrderButtan.addEventListener('click', () => {
+  etaOverlay.classList.remove('active');
+})
 
 //funktion API hämta id
 function getItemIds(items) {
