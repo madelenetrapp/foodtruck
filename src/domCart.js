@@ -93,7 +93,25 @@ function refreshCartView() {
 
   const total = calculateTotal(cart);
   const totalWithVat = total * 1.2;
-  totalDiv.textContent = `TOTALT (inkl 20% moms): ${totalWithVat.toFixed(2)} SEK`;
+
+  totalDiv.textContent = '';
+
+  const left = document.createElement('div');
+  left.className = 'block1';
+  const titel = document .createElement('div');
+  titel.className = 'titel';
+  titel.textContent = 'TOTAL';
+  const subtitel = document.createElement('div');
+  subtitel.className = 'subtitel';
+  subtitel.textContent = 'inkl 20% moms';
+  left.append(titel, subtitel);
+
+  const right = document.createElement('div');
+  right.className = 'block2';
+  right.textContent = `${totalWithVat.toFixed(2)} SEK`;
+
+  totalDiv.append(left, right);
+  
 }
 
 //uppdatera varukorg med items
