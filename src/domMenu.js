@@ -5,12 +5,22 @@ let wontonResult = await requestWonton(); //anropas och körs i tur och ordning
 let dipResult = await requestDip();
 let drinkResult = await requestDrink();
 
-//button for cart TODO: lägg till bild
-const button = document.querySelector('.cart'); //hittar HTML elementet som matchar css-selektorn
-button.textContent = 'Klicka';
-button.addEventListener('click', () => { //lyssnar på clicket
+// button for cart med bild
+const cartButton = document.querySelector('.cart'); 
+
+const img = document.createElement('img');
+img.src = './img/cart btn.svg'; 
+
+cartButton.appendChild(img);
+cartButton.addEventListener('click', () => {
   console.log('Klick');
 });
+
+// Counter
+const counter = document.createElement('span');
+counter.className = 'cart-counter';
+counter.textContent = '0';
+cartButton.appendChild(counter);
 
 //wonton information
 function addWontonInformation(wontonInformation) {

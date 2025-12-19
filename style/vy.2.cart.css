@@ -18,13 +18,18 @@
 .overlay-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-content: center;
+  /* align-content: ; */
   font-family: 'Nunito Sans', sans-serif;
   background-color: rgb(240, 234, 234);
-  min-width: 300px;
-  min-height: 500px;
-  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  /* height: auto;  */
+  max-height: 90vh;
+  padding: 10px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .overlay-cart-image {
@@ -66,6 +71,30 @@
   margin-top: 1em;
 }
 
+.cart {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+.cart-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 0.7em;
+  font-weight: bold;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+
+}
+
 .cart-display .name-price-row {
   border-top: none;
 }
@@ -79,7 +108,6 @@
   justify-content: space-between;
   border-top: 1px dotted gray;
   padding-bottom: 10px;
-  margin-bottom: 10px;
 }
 
 .cart-item-price {
@@ -87,16 +115,21 @@
   margin-left: 10px;
 }
 
-.cart-display .cart-wrapper:not(:last-child) .button-row{
+.item-amount {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  color: #343534;
+  width: 16px;
+}
+
+.cart-display .cart-wrapper:not(:last-child) .button-row {
   border-bottom: 1px solid gray;
 }
 
-/* .button-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 10px;
-} */
+.button-row {
+  padding-bottom: 10px;
+}
 
 .button-row button {
   background-color: #cac4c4;
@@ -104,8 +137,8 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .overlay-total {
@@ -143,4 +176,17 @@
   align-items: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+.cart-wrapper {
+  padding: 5px;
+}
+
+@media (max-width: 390px) {
+  .overlay-content {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
 }
