@@ -92,7 +92,7 @@ function refreshCartView() {
   updateCartInformation(orderdItems);
 
   const total = calculateTotal(cart);
-  const totalWithVat = total * 1.2;
+  const totalWithVat = total;
 
   totalDiv.textContent = '';
 
