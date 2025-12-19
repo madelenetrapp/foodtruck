@@ -17,39 +17,99 @@ export function addToCart(item) {
 }
 
 // cart function--skapar och fyller divar till varukorgen
-function addCartInformation(cartInformation) { //cart info = ett array
+function addCartInformation(cartInformation) {
 
-  //spar hur långt det är och sparar det första item
-  let amount = cartInformation.length //sparar längden på cart info
-  let firstItem = cartInformation[0]; //hämtar ut första item i arreyen, för att det är null
+  const amount = cartInformation.length;
+  const firstItem = cartInformation[0];
 
   const cartWrapper = document.createElement('div');
   cartWrapper.classList.add('cart-wrapper');
 
-  const Item = document.createElement('div');
-  const showAmount = document.createElement('div');
-  const Row = document.createElement('div');
-  const Price = document.createElement('div');
+  const itemDiv = document.createElement('div');
+  itemDiv.textContent = firstItem.name;
+
+  const priceDiv = document.createElement('div');
+  priceDiv.textContent = firstItem.price + 'SEK';
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
+  const amountSpan = document.createElement('span');
+  amountSpan.classList.add('item-amount');
+  amountSpan.textContent = `${amount} stycken`;
+
+  const plusButton = document.createElement('button');
+  plusButton.textContent = '+';
+
+  const minusButton = document.createElement('button');
+  minusButton.textContent = '-';
+
+
+  plusButton.addEventListener('click', () => {
+    cart.push(firstItem);
+    refreshCartView();
+  });
+
+  minusButton.addEventListener('click', () => {
+    const index = cart.findIndex(item => item.id === firstItem.id);
+    if (index !== -1) {
+      cart.splice(index, 1);
+      refreshCartView();
+    }
+  });
+
+  buttonContainer.appendChild(minusButton);
+  buttonContainer.appendChild(amountSpan);
+  buttonContainer.appendChild(plusButton);
+
+  cartWrapper.appendChild(itemDiv);
+  cartWrapper.appendChild(buttonContainer);
+  cartWrapper.appendChild(priceDiv);
+
+  document.querySelector('.cart-display').appendChild(cartWrapper);
+
+
+  // let amount = cartInformation.length //sparar längden på cart info
+  // let firstItem = cartInformation[0]; //hämtar ut första item i arreyen, för att det är null
+
+  // const cartWrapper = document.createElement('div');
+  // cartWrapper.classList.add('cart-wrapper');
+
+  // const Item = document.createElement('div');
+  // const showAmount = document.createElement('div');
+  // const Row = document.createElement('div');
+  // const Price = document.createElement('div');
+  // // const cartInfoDiv = document.querySelector('.cart-display');
+
+  // Item.classList.add('cart-item');
+  // showAmount.classList.add('amount-items');
+  // Row.classList.add('cart-row');
+  // Price.classList.add('cart-price');
+
+  // Item.innerText = firstItem.name;
+  // showAmount.innerText = amount;
+  // Price.innerText = firstItem.price + ' SEK';
+
+  // cartWrapper.appendChild(Item);
+  // cartWrapper.appendChild(showAmount);
+  // cartWrapper.appendChild(Row);
+  // cartWrapper.appendChild(Price);
+  // // cartInfoDiv.appendChild(cartWrapper);
+
   // const cartInfoDiv = document.querySelector('.cart-display');
-
-  Item.classList.add('cart-item');
-  showAmount.classList.add('amount-items');
-  Row.classList.add('cart-row');
-  Price.classList.add('cart-price');
-
-  Item.innerText = firstItem.name;
-  showAmount.innerText = amount;
-  Price.innerText = firstItem.price + ' SEK';
-
-  cartWrapper.appendChild(Item);
-  cartWrapper.appendChild(showAmount);
-  cartWrapper.appendChild(Row);
-  cartWrapper.appendChild(Price);
+  // // cartInfoDiv.innerText = '';
   // cartInfoDiv.appendChild(cartWrapper);
+}
 
-  const cartInfoDiv = document.querySelector('.cart-display');
-  // cartInfoDiv.innerText = '';
-  cartInfoDiv.appendChild(cartWrapper);
+//refresh
+function refreshCartView() {
+  const orderdItems = identifyOrderdItems();
+  updateCartInformation(orderdItems);
+
+  const total = calculateTotal(cart);
+  const totalWithVat = total * 1.2;
+  totalDiv.textContent = `TOTALT (inkl 20% moms): ${totalWithVat.toFixed(2)} SEK`;
+
 }
 
 // funktion anropa funktionen när det ska köras TODO
@@ -65,24 +125,24 @@ function updateCartInformation(items) {
   };
 }
 
-//container för + och - knapparna
-const buttonContainer = document.createElement('div');
-buttonContainer.classList.add('button-container');
+// //container för + och - knapparna
+// const buttonContainer = document.createElement('div');
+// buttonContainer.classList.add('button-container');
 
-content.appendChild(buttonContainer);
-//ANVÄNDER APPENDcHILDE FÖR ATT LÄGGA TILL BUTTONCONTAINER I DOM??
+// content.appendChild(buttonContainer);
+// //ANVÄNDER APPENDcHILDE FÖR ATT LÄGGA TILL BUTTONCONTAINER I DOM??
 
-//knapp för fler antal items
-const itemSelected = document.createElement('button');
-itemSelected.textContent = '+';
-itemSelected.classList.add('item-selected');
-buttonContainer.appendChild(itemSelected);
+// //knapp för fler antal items
+// const itemSelected = document.createElement('button');
+// itemSelected.textContent = '+';
+// itemSelected.classList.add('item-selected');
+// buttonContainer.appendChild(itemSelected);
 
-//knapp för färre antal items
-const itemDismissed = document.createElement('button');
-itemDismissed.textContent = '-';
-itemDismissed.classList.add('item-dismissed');
-buttonContainer.appendChild(itemDismissed);
+// //knapp för färre antal items
+// const itemDismissed = document.createElement('button');
+// itemDismissed.textContent = '-';
+// itemDismissed.classList.add('item-dismissed');
+// buttonContainer.appendChild(itemDismissed);
 
 //bild i högra hörnet
 const cartImage = document.createElement('img');
@@ -126,7 +186,7 @@ payButton.addEventListener('click', async () => {
   overlay.classList.remove('active');
   etaOverlay.classList.add('active');
 
-  if (!cart.length) return; 
+  if (!cart.length) return;
 
   const orderResponse = await sendOrderRequest(cart);
 
@@ -166,14 +226,14 @@ function identifyOrderdItems() {
 //visa overlay
 button.addEventListener('click', () => {
   overlay.classList.add('active');
+  refreshCartView();
+  // const orderdItems = identifyOrderdItems();
+  // updateCartInformation(orderdItems); 
 
-  const orderdItems = identifyOrderdItems();
-  updateCartInformation(orderdItems); //gör ett anrop (anropar funktionen när man klickar på knappen)
+  // const total = calculateTotal(cart);
+  // const totalWithVat = total * 1.2;
 
-  const total = calculateTotal(cart);
-  const totalWithVat = total * 1.2;
-
-  totalDiv.textContent = `TOTALT (inkl 20% moms): ${totalWithVat.toFixed(2)} SE`;
+  // totalDiv.textContent = `TOTALT (inkl 20% moms): ${totalWithVat.toFixed(2)} SE`;
 
 })
 
