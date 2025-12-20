@@ -16,12 +16,6 @@ cartButton.addEventListener('click', () => {
   console.log('Klick');
 });
 
-// Counter
-const counter = document.createElement('span');
-counter.className = 'cart-counter';
-counter.textContent = '0';
-cartButton.appendChild(counter);
-
 //wonton information
 function addWontonInformation(wontonInformation) {
 
@@ -43,7 +37,7 @@ function addWontonInformation(wontonInformation) {
   //lägger till en text på elementet
   wontonItem.innerText = wontonInformation.name; 
   wontonPrice.innerText = wontonInformation.price + ' SEK';
-  wontonIngredients.innerText = wontonInformation.ingredients.join(', ');
+  wontonIngredients.innerText = wontonInformation.ingredients.join(' ');
 
   //lägger till wontonItem på det skapade elementet
   button.appendChild(wontonItem); 
@@ -114,8 +108,6 @@ function addDrinkInformation(drinkItem) {
 
   drink.innerText = drinkItem.name;
   // price.innerText = drinkItem.price;
-
-
   button.appendChild(drink);        //lägger till dipSauce på det skapade elementet
   // button.appendChild(drinkRow);
   button.appendChild(price);

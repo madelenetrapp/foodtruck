@@ -1,3 +1,7 @@
+///
+console.log('API.JS LOADED - VERSION 123'); //TODO
+
+
 const apiKey = "yum-BHRyCR5Lgznl28Tr"; // hämtar en gång
 const tenantKey = "izu6"; // hämtas en gång
 
@@ -46,48 +50,31 @@ export { requestDrink, requestWonton, requestDip };
 
 //tenant
 async function sendOrderRequest(items) {
-  try {
+  console.log('SEND ORDER CALLED');
 
-    const itemIds = items.map(item => item.id);
-    ////
-     console.log('ITEM IDS:', itemIds);
+  const itemIds = items.map(item => item.id);
+  console.log('ITEM IDS:', itemIds);
 
-    const response = await fetch(
-      `https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenantKey}/orders`,
-      {
-        method: "POST",
-        headers: {
-          'x-zocom': apiKey,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          items: itemIds
-        })
-      }
-    );
-
-      /////
-      console.log('STATUS:', response.status);
-
-      ///
-        const text = await response.text();
-    console.log('RAW RESPONSE:', text);
-
-    if (response.status !== 201) {
-      return null;
+  const response = await fetch(
+    `https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenantKey}/orders`,
+    {
+      method: "POST",
+      headers: {
+        'x-zocom': apiKey,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ items: itemIds })
     }
+  );
 
-    const data = await response.json();
-    return data;
+  console.log('STATUS:', response.status);
 
-  } catch (error) {
-    console.error(error);
+  const data = await response.json();
+  console.log('PARSED RESPONSE:', data);
 
-    ///
-     console.error(error);
-    return null;
-  }
+  return data;
 }
+
 
 export { sendOrderRequest };
 

@@ -45,7 +45,7 @@ newOrderButtan.addEventListener('click', () => {
   etaOverlay.classList.remove('active');
 })
 
-//funktion API hämta id
+//funktion API hämta id TODO
 function getItemIds(items) {
   return Object.values(items)
   .flat()
@@ -58,10 +58,14 @@ etaContent.addEventListener('click', e => {
 });
 
 
-//lägg till ETA och text
+//
+export function calculateEtaMinutes(etaIsoString) {
+  const now = new Date();
+  const eta = new Date(etaIsoString);
 
-// etaContent.appendChild(etaText);
+  const diffMs = eta - now;
+  return Math.ceil(diffMs / 60000);
+}
 
-// const eta = await fetchEta();
-// etaText.textContent = 'ETA ${eta} MIN';
+
 

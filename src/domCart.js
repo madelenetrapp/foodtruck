@@ -1,5 +1,7 @@
 import { etaOverlay, etaTime } from './domEta.js';
+import { calculateEtaMinutes } from './domEta.js';
 import { sendOrderRequest } from './api.js';
+
 
 // cart array
 const cart = [];
@@ -15,7 +17,7 @@ document.body.appendChild(overlay);
 // counter på cart-knappen
 const counter = document.createElement('span');
 counter.className = 'cart-counter';
-counter.textContent = '0';
+counter.textContent = '0'; 
 cartButton.appendChild(counter);
 
 // update counter
@@ -58,6 +60,9 @@ payButton.addEventListener('click', async () => {
 console.log(orderResponse);
 
   if (!orderResponse) return;
+
+  ///
+  const etaMinutes = calculateEtaMinutes(orderResponse.order.eta);
   etaTime.textContent = `ETA ${orderResponse.etaMinutes} MIN`;
 });
 
