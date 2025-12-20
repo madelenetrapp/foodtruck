@@ -55,6 +55,8 @@ payButton.addEventListener('click', async () => {
   etaOverlay.classList.add('active');
   if (!cart.length) return;
   const orderResponse = await sendOrderRequest(cart);
+console.log(orderResponse);
+
   if (!orderResponse) return;
   etaTime.textContent = `ETA ${orderResponse.etaMinutes} MIN`;
 });
@@ -102,6 +104,7 @@ function addCartInformation(cartInformation) {
     refreshCartView();
   });
 
+  //minus knapp
   minusButton.addEventListener('click', () => {
     const index = cart.findIndex(item => item.id === firstItem.id);
     if (index !== -1) {
@@ -115,6 +118,7 @@ function addCartInformation(cartInformation) {
   cartDisplay.appendChild(cartWrapper);
 }
 
+//räka ut totalen
 function refreshCartView() {
   const orderedItems = identifyOrderedItems();
   updateCartInformation(orderedItems);
@@ -141,15 +145,18 @@ function refreshCartView() {
   totalDiv.append(left, right);
 }
 
+//uppdatera cart
 function updateCartInformation(items) {
   cartDisplay.innerHTML = '';
   for (const item in items) addCartInformation(items[item]);
 }
 
+//räkna totalen
 function calculateTotal(cart) {
   return cart.reduce((sum, item) => sum + item.price, 0);
 }
 
+//identifiera items
 function identifyOrderedItems() {
   const items = {};
   cart.forEach(item => {

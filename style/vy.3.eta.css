@@ -1,11 +1,13 @@
-.eta-overlay {
-justify-content: center;
-align-items: center;
-position: fixed;
-display: none;
-inset: 0;
-background-color: #489078;
-z-index: 2000;
+
+.eta-overlay-content {
+  background-color: #605858;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .eta-overlay.active {
@@ -15,7 +17,7 @@ z-index: 2000;
 .eta-overlay .overlay-content {
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
@@ -25,11 +27,21 @@ z-index: 2000;
   box-sizing: border-box;
 }
 
-.eta-overlay h2 {
+.eta-overlay h2.eta-title {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
+}
+
+.eta-overlay h2.eta-title::after {
+   font-family: "Oswald", sans-serif;
+  content: 'TILLAGAS!';
+  text-align: center;
+  font-size: 20px;
 }
 
 .eta-overlay p {
@@ -38,5 +50,18 @@ z-index: 2000;
 }
 
 .eta-overlay {
+  cursor: pointer;
+}
+
+/* p {
+  font-weight: normal;
+} */
+
+.eta-new-order-button {
+  background-color: #343534;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  padding: 1em;
   cursor: pointer;
 }

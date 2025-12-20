@@ -28,28 +28,34 @@ function addWontonInformation(wontonInformation) {
   const button = document.createElement('button');
   button.classList.add('wonton-wrapper');
 
-  const wontonItem = document.createElement('div'); //skapar element 
+  //skapar element 
+  const wontonItem = document.createElement('div'); 
   const wontonRow = document.createElement('div');
   const wontonPrice = document.createElement('div');
   const wontonIngredients = document.createElement('div');
 
-  wontonItem.classList.add('wonton-item'); //lägger till en klass på elementet
+  //lägger till en klass på elementet
+  wontonItem.classList.add('wonton-item'); 
   wontonRow.classList.add('wonton-row');
   wontonPrice.classList.add('wonton-price');
   wontonIngredients.classList.add('wonton-ingredients');
 
-  wontonItem.innerText = wontonInformation.name; //lägger till en text på elementet
+  //lägger till en text på elementet
+  wontonItem.innerText = wontonInformation.name; 
   wontonPrice.innerText = wontonInformation.price + ' SEK';
   wontonIngredients.innerText = wontonInformation.ingredients.join(', ');
 
-  button.appendChild(wontonItem); //lägger till wontonItem på det skapade elementet
+  //lägger till wontonItem på det skapade elementet
+  button.appendChild(wontonItem); 
   button.appendChild(wontonRow);
   button.appendChild(wontonPrice);
   button.appendChild(wontonIngredients);
 
+  //addToCart anropas här, när man clickar
   button.addEventListener('click', () => {
-    addToCart(wontonInformation) //addToCart anropas här, när man clickar
+    addToCart(wontonInformation) 
   });
+  
 
   document.querySelector('.wonton-information').appendChild(button);
  //hittar och returnerar första elementet som  matchar css.selectorn wonton-information
