@@ -59,12 +59,12 @@ etaContent.addEventListener('click', e => {
 
 
 //
-export function calculateEtaMinutes(etaIsoString) {
+export function calculateEtaMinutes(etaIsoString) { //en sträng som representerar ett datum/tid i ISO-format
   const now = new Date();
   const eta = new Date(etaIsoString);
 
-  const diffMs = eta - now;
-  return Math.ceil(diffMs / 60000);
+  const diffMs = eta - now;         //differensen i millisecunder
+  return Math.ceil(diffMs / 60000); //omvandla till minuter
 }
 
 

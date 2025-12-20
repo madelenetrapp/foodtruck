@@ -61,9 +61,9 @@ console.log(orderResponse);
 
   if (!orderResponse) return;
 
-  ///
+  ///skriver ut hur många minuter som är kvar eta
   const etaMinutes = calculateEtaMinutes(orderResponse.order.eta);
-  etaTime.textContent = `ETA ${orderResponse.etaMinutes} MIN`;
+  etaTime.textContent = `ETA ${etaMinutes} MIN`;
 });
 
 overlay.appendChild(content);

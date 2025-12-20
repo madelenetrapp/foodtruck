@@ -78,5 +78,3 @@ async function sendOrderRequest(items) {
 
 export { sendOrderRequest };
 
-
-//order
