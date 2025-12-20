@@ -1,36 +1,27 @@
 import { resetCart } from './domCart.js';
 
-// overlay
 const etaOverlay = document.createElement('div');
 etaOverlay.classList.add('overlay', 'eta-overlay');
 
-//innehåll overlay
 const etaContent = document.createElement('div');
 etaContent.classList.add('eta-overlay-content');
 
-//bild till wonton tillagas
 const wontonImage = document.createElement('img');
 wontonImage.src = 'img/boxtop.svg';
 
-// wontonImage.alt = 'Dina wonton tillagas';
 wontonImage.classList.add('wonton-header-image');
 
-// Lägg bilden överst i etaContent, innan rubrik
 etaContent.prepend(wontonImage);
 
-//texi i div
 const etaTitle = document.createElement('h2');
 etaTitle.textContent = 'DINA WONTONS';
 etaTitle.classList.add('eta-title');
 
-//texi till API
 const etaTime = document.createElement('p');
 etaTime.textContent = 'ETA ... MIN';
 
-//tiden räknar ner TODO: fungerar?
 let etaInterval;
 
-// ordernummer
 const etaOrderId = document.createElement('p');
 etaOrderId.classList.add('eta-order-id');
 
@@ -41,14 +32,12 @@ document.body.appendChild(etaOverlay);
 
 export { etaOverlay, etaTime, etaOrderId }
 
-//ny beställning button
 const newOrderButtan = document.createElement('button');
 newOrderButtan.textContent = 'GÖR EN NY BESTÄLLNING';
 newOrderButtan.classList.add('eta-new-order-button');
 
 etaContent.appendChild(newOrderButtan);
 
-//klick stänga overlay- START NEW GAME HAHAHAHA
 newOrderButtan.addEventListener('click', () => {
   etaOverlay.classList.remove('active');
   document.body.classList.remove('overlay-active');
@@ -56,26 +45,22 @@ newOrderButtan.addEventListener('click', () => {
   resetCart();
 })
 
-//funktion API hämta id TODO
 function getItemIds(items) {
   return Object.values(items)
     .flat()
     .map(item => item.id);
 }
 
-//stoppa cklick (kunna komma tillbaka till vy1 genom att klicka på kundkorgen)
 etaContent.addEventListener('click', e => {
   e.stopPropagation();
 });
 
-
-//
-export function calculateEtaMinutes(etaIsoString) { //en sträng som representerar ett datum/tid i ISO-format
+export function calculateEtaMinutes(etaIsoString) { 
   const now = new Date();
   const eta = new Date(etaIsoString);
 
-  const diffMs = eta - now;         //differensen i millisecunder
-  return Math.ceil(diffMs / 60000); //omvandla till minuter
+  const diffMs = eta - now;         
+  return Math.ceil(diffMs / 60000); 
 }
 
 

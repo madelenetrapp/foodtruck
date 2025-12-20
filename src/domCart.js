@@ -2,11 +2,8 @@ import { etaOverlay, etaTime, etaOrderId } from './domEta.js';
 import { calculateEtaMinutes } from './domEta.js';
 import { sendOrderRequest } from './api.js';
 
-
-// cart array
 const cart = [];
 
-// overlay
 const cartButton = document.querySelector('.cart');
 const overlay = document.createElement('div');
 
@@ -16,44 +13,38 @@ content.classList.add('overlay-content');
 
 document.body.appendChild(overlay);
 
-//cart-image (unta counter)
 const cartImageOverlay = document.createElement('img');
 cartImageOverlay.src = 'img/cart btn.svg';
 cartImageOverlay.classList.add('overlay-cart-image');
 
 content.insertBefore(cartImageOverlay, content.firstChild);
 
-// counter på cart-knappen-- TODO FLYTTA TILL MENU???
 const counter = document.createElement('span');
 counter.className = 'cart-counter';
 counter.textContent = '0';
 cartButton.appendChild(counter);
 
-// update counter
 export function addToCart(item) {
   cart.push(item);
   counter.textContent = cart.length;
   refreshCartView();
   console.log(cart);
 }
-// eta-overlay backbutton
+
 etaOverlay.addEventListener('click', () => {
   etaOverlay.classList.remove('active');
   overlay.classList.remove('active');
   document.body.classList.remove('overlay-active');
 });
 
-// cart-display
 const cartDisplay = document.createElement('div');
 cartDisplay.classList.add('cart-display');
 content.appendChild(cartDisplay);
 
-// total
 const totalDiv = document.createElement('div');
 totalDiv.classList.add('overlay-total');
 content.appendChild(totalDiv);
 
-// pay button
 const payButton = document.createElement('button');
 payButton.classList.add('overlay-pay-button');
 payButton.textContent = 'TAKE MY MONEY!';
@@ -69,7 +60,6 @@ payButton.addEventListener('click', async () => {
 
   if (!orderResponse) return;
 
-  ///skriver ut hur många minuter som är kvar eta
   const etaMinutes = calculateEtaMinutes(orderResponse.order.eta);
   etaTime.textContent = `ETA ${etaMinutes} MIN`;
 
@@ -79,7 +69,6 @@ payButton.addEventListener('click', async () => {
 overlay.appendChild(content);
 document.body.appendChild(overlay);
 
-// cart funktioner
 function addCartInformation(cartInformation) {
   const firstItem = cartInformation[0];
 
@@ -119,7 +108,6 @@ function addCartInformation(cartInformation) {
     refreshCartView();
   });
 
-  //minus knapp
   minusButton.addEventListener('click', () => {
     const index = cart.findIndex(item => item.id === firstItem.id);
     if (index !== -1) {
@@ -133,7 +121,6 @@ function addCartInformation(cartInformation) {
   cartDisplay.appendChild(cartWrapper);
 }
 
-//räka ut totalen
 function refreshCartView() {
   const orderedItems = identifyOrderedItems();
   updateCartInformation(orderedItems);
@@ -160,18 +147,15 @@ function refreshCartView() {
   totalDiv.append(left, right);
 }
 
-//uppdatera cart
 function updateCartInformation(items) {
   cartDisplay.innerHTML = '';
   for (const item in items) addCartInformation(items[item]);
 }
 
-//räkna totalen
 function calculateTotal(cart) {
   return cart.reduce((sum, item) => sum + item.price, 0);
 }
 
-//identifiera items
 function identifyOrderedItems() {
   const items = {};
   cart.forEach(item => {
@@ -181,7 +165,6 @@ function identifyOrderedItems() {
   return items;
 }
 
-// öppna overlay
 cartButton.addEventListener('click', () => {
   overlay.classList.add('active');
   document.body.classList.add('overlay-active');

@@ -1,11 +1,6 @@
-///
-console.log('API.JS LOADED - VERSION 123'); //TODO
+const apiKey = "yum-BHRyCR5Lgznl28Tr"; 
+const tenantKey = "izu6";
 
-
-const apiKey = "yum-BHRyCR5Lgznl28Tr"; // hämtar en gång
-const tenantKey = "izu6"; // hämtas en gång
-
-//API request
 async function sendRequest(url) {
   try {
     const response = await fetch(url, {
@@ -26,7 +21,6 @@ async function sendRequest(url) {
   }
 }
 
-// meny
 async function requestWonton() {
   return await sendRequest(
     'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu?type=wonton'
@@ -48,7 +42,6 @@ async function requestDrink() {
 export { requestDrink, requestWonton, requestDip };
 
 
-//tenant
 async function sendOrderRequest(items) {
   console.log('SEND ORDER CALLED');
 
