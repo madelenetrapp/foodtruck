@@ -9,18 +9,7 @@
   max-width: 100%;
   padding: 15px;
   padding-bottom: 5em;
-}
-
-.cart {
-  /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */
-  background-color: white;
-  border: 1px solid #489078;
-  border-radius: 4px;
-  width: 4em;
-  height: 4em;
-  display: flex;
-  justify-content: center; 
-  align-items: center;   
+  overflow: hidden;
 }
 
 .cart img {
@@ -42,6 +31,9 @@
 }
 
 .cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
   border: 1px solid #489078;
@@ -64,7 +56,7 @@
   gap: 5px;
 
   */ &:first-child {
-    border-top-left-radius: 4px; /*varför fungrar inte denna?*/
+    border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
 
@@ -77,7 +69,6 @@
     cursor: pointer;
     background-color: #353131;
   }
-
 }
 
 .wonton-item {
@@ -127,7 +118,6 @@
 .wonton-information {
   box-sizing: border-box;
   background-color: #489078;
-  
   color: white;
 }
 
@@ -142,7 +132,7 @@
   margin: 5px;
   padding-right: 10px;
 
-        &:hover {
+  &:hover {
     cursor: pointer;
     background-color: #353131;
   }
@@ -196,15 +186,17 @@
   margin: 8px;
 }
 
-@media (min-width: 700px) {
-  .menuView{
+@media (min-width: 391px) {
+  .menuView {
     width: 700px;
     margin: 50px auto 0 auto;
   }
 }
 
-@media (min-width: 391px) {
-      body {
+@media (min-width: 390px) {
+  body {
     background-color: #f0f6f2;
+    width: 390px;
+    margin: 0 auto;
   }
 }

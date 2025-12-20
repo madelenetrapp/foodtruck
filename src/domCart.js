@@ -1,4 +1,4 @@
-import { etaOverlay, etaTime } from './domEta.js';
+import { etaOverlay, etaTime, etaOrderId } from './domEta.js';
 import { calculateEtaMinutes } from './domEta.js';
 import { sendOrderRequest } from './api.js';
 
@@ -9,15 +9,24 @@ const cart = [];
 // overlay
 const cartButton = document.querySelector('.cart');
 const overlay = document.createElement('div');
+
 overlay.classList.add('overlay');
 const content = document.createElement('div');
 content.classList.add('overlay-content');
+
 document.body.appendChild(overlay);
 
-// counter på cart-knappen
+//cart-image (unta counter)
+const cartImageOverlay = document.createElement('img');
+cartImageOverlay.src = 'img/cart btn.svg';
+cartImageOverlay.classList.add('overlay-cart-image');
+
+content.insertBefore(cartImageOverlay, content.firstChild);
+
+// counter på cart-knappen-- TODO FLYTTA TILL MENU???
 const counter = document.createElement('span');
 counter.className = 'cart-counter';
-counter.textContent = '0'; 
+counter.textContent = '0';
 cartButton.appendChild(counter);
 
 // update counter
@@ -27,14 +36,12 @@ export function addToCart(item) {
   refreshCartView();
   console.log(cart);
 }
-
 // eta-overlay backbutton
-etaOverlay.addEventListener('click', () => etaOverlay.classList.remove('active'));
-
-// cart image
-const cartImage = document.createElement('img');
-cartImage.classList.add('overlay-cart-image');
-content.appendChild(cartImage);
+etaOverlay.addEventListener('click', () => {
+  etaOverlay.classList.remove('active');
+  overlay.classList.remove('active');
+  document.body.classList.remove('overlay-active');
+});
 
 // cart-display
 const cartDisplay = document.createElement('div');
@@ -56,14 +63,17 @@ payButton.addEventListener('click', async () => {
   overlay.classList.remove('active');
   etaOverlay.classList.add('active');
   if (!cart.length) return;
+
   const orderResponse = await sendOrderRequest(cart);
-console.log(orderResponse);
+  console.log(orderResponse);
 
   if (!orderResponse) return;
 
   ///skriver ut hur många minuter som är kvar eta
   const etaMinutes = calculateEtaMinutes(orderResponse.order.eta);
   etaTime.textContent = `ETA ${etaMinutes} MIN`;
+
+  etaOrderId.textContent = `${orderResponse.order.id}`
 });
 
 overlay.appendChild(content);
@@ -174,5 +184,12 @@ function identifyOrderedItems() {
 // öppna overlay
 cartButton.addEventListener('click', () => {
   overlay.classList.add('active');
+  document.body.classList.add('overlay-active');
   refreshCartView();
 });
+
+export function resetCart() {
+  cart.length = 0;
+  counter.textContent = 0;
+  refreshCartView();
+}

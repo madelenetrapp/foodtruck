@@ -6,7 +6,7 @@
   z-index: 1000;
   top: 0;
   left: 0;
-  background-color: #489078;
+  background-color: #f0f6f2;
   width: 100vw;
   height: 100vh;
 }
@@ -15,31 +15,40 @@
   display: flex;
 }
 
+body.overlay-active .wonton-information,
+body.overlay-active .dipsauce-information,
+body.overlay-active .drink-information {
+  display: none;
+}
+
 .overlay-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  /* align-content: ; */
   font-family: 'Nunito Sans', sans-serif;
   background-color: rgb(240, 234, 234);
   width: 90%;
-  max-width: 400px;
-  /* height: auto;  */
+  max-width: 390px;
   max-height: 90vh;
+  border: 1px;
   padding: 10px;
+  padding-bottom: 5em;
   box-sizing: border-box;
   overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2),
+    0 3px 10px rgba(0, 0, 0, .19); 
+    position: relative;
 }
 
 .overlay-cart-image {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  margin-right: 3em;
-  margin-top: 4em;
+  position: sticky;
+  top: 0;           
+  align-self: flex-end; 
+  width: 4em;
+  height: 4em;
+  object-fit: contain;
+  z-index: 10;
+  margin-bottom: 10px; 
 }
 
 .overlay-back-button {
@@ -61,6 +70,7 @@
   font-size: small;
   background-color: rgb(196, 192, 192);
   height: 3em;
+  margin-top: 5em;
 }
 
 .overlay-pay-button {
@@ -166,7 +176,6 @@
 .overlay-total .block1 .subtitel {
   font-weight: normal;
   font-size: 0.8em;
-  /* color: #555; */
 }
 
 .overlay-total .block2 {

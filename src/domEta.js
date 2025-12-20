@@ -1,4 +1,4 @@
-//overlay 2
+import { resetCart } from './domCart.js';
 
 // overlay
 const etaOverlay = document.createElement('div');
@@ -10,10 +10,10 @@ etaContent.classList.add('eta-overlay-content');
 
 //bild till wonton tillagas
 const wontonImage = document.createElement('img');
-wontonImage.src = 'img/boxtop.svg'; 
+wontonImage.src = 'img/boxtop.svg';
 
 // wontonImage.alt = 'Dina wonton tillagas';
-wontonImage.classList.add('wonton-header-image'); 
+wontonImage.classList.add('wonton-header-image');
 
 // Lägg bilden överst i etaContent, innan rubrik
 etaContent.prepend(wontonImage);
@@ -27,11 +27,19 @@ etaTitle.classList.add('eta-title');
 const etaTime = document.createElement('p');
 etaTime.textContent = 'ETA ... MIN';
 
+//tiden räknar ner TODO: fungerar?
+let etaInterval;
+
+// ordernummer
+const etaOrderId = document.createElement('p');
+etaOrderId.classList.add('eta-order-id');
+
 etaContent.append(etaTitle, etaTime);
+etaContent.appendChild(etaOrderId);
 etaOverlay.appendChild(etaContent);
 document.body.appendChild(etaOverlay);
 
-export { etaOverlay, etaTime }
+export { etaOverlay, etaTime, etaOrderId }
 
 //ny beställning button
 const newOrderButtan = document.createElement('button');
@@ -43,13 +51,16 @@ etaContent.appendChild(newOrderButtan);
 //klick stänga overlay- START NEW GAME HAHAHAHA
 newOrderButtan.addEventListener('click', () => {
   etaOverlay.classList.remove('active');
+  document.body.classList.remove('overlay-active');
+
+  resetCart();
 })
 
 //funktion API hämta id TODO
 function getItemIds(items) {
   return Object.values(items)
-  .flat()
-  .map(item => item.id);
+    .flat()
+    .map(item => item.id);
 }
 
 //stoppa cklick (kunna komma tillbaka till vy1 genom att klicka på kundkorgen)
