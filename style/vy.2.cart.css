@@ -64,15 +64,6 @@ body.overlay-active .drink-information {
   background-color: #3b7662;
 }
 
-.overlay-total {
-  display: grid;
-  font-weight: bold;
-  font-size: small;
-  background-color: rgb(196, 192, 192);
-  height: 3em;
-  margin-top: 5em;
-}
-
 .overlay-pay-button {
   background-color: #343534;
   color: rgb(250, 248, 248);
@@ -176,6 +167,7 @@ body.overlay-active .drink-information {
 .overlay-total .block1 .subtitel {
   font-weight: normal;
   font-size: 0.8em;
+
 }
 
 .overlay-total .block2 {

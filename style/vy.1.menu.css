@@ -85,7 +85,6 @@
 .drink-row {
   display: flex;
   flex-grow: 2;
-  align-self: center;
   align-self: end;
   background-color: #605858;
   color: white;
